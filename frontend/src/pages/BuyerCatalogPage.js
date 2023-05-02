@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { useHistory } from 'react-router-dom'
 import IMAGES from "../constants/image"
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import AuthContext from '../context/AuthContext.js';
 
@@ -9,11 +10,11 @@ import AuthContext from '../context/AuthContext.js';
 
 
 
-function BuyerCatalogPage (props){
+function BuyerCatalogPage(props){
     
     const [categories,setCategories] = useState([])
     const [orders,setOrders] = useState([]) 
-    
+    const [basketItems, setBasketItems] = useState([]);
     const history = useHistory()
     
 
@@ -29,6 +30,10 @@ function BuyerCatalogPage (props){
         setCategories(data)
         
       };
+     function addToBasket(item) {
+        setBasketItems([...basketItems, item]);
+      }
+      
     const orders_by_categories = async(e,text)=>{ 
         if (e){e.preventDefault()}
         let response = await fetch('http://127.0.0.1:8000/api/categories?' + new URLSearchParams({
@@ -55,7 +60,9 @@ function BuyerCatalogPage (props){
         <div className="container container-catalog">
             <div className="row">
                 <div className="col">
-                    <h3>Категории</h3>
+                    <h3 ><a onClick={(e)=>{
+                        orders_by_categories(e,'')
+                    }}>Категории</a></h3>
                     {categories.map((category,index)=>{
                         return <li key={index}><a href={"#"} onClick={(e)=>{
                             orders_by_categories(e,category.name)
@@ -89,7 +96,28 @@ function BuyerCatalogPage (props){
                     "Оставить заявку"
                     
                     }</button>
+                    <div className="basket">
+                    {basketItems.map((item) => {
+
+                            let quantity = 0
+                            return <div key={item.id}>
+                                <h3>{item.name}</h3>
+                                <p>{item.price}</p>
+                                <button className="icon-button" onClick={()=>{quantity+=1}}>
+                                    <i className="fas fa-plus"></i>
+                                </button>
+                                <p>{quantity}</p>
+                                <button className="icon-button" onClick={()=>{quantity+=1}}>
+                                    <i className="fas fa-minus" ></i>
+                                </button>
+                            </div>
+                        })}
+
+                    </div>
                 </div>
+            </div>
+            <div className="">
+
             </div>
             
             </div>    

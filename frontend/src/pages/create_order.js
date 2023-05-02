@@ -4,19 +4,19 @@ import AuthContext from '../context/AuthContext';
 
 
 
-function AddProduct(){
-    const [categories,setCategories] = useState([])
+function create_order(){
     const {user} = useContext(AuthContext)
-    const all_categories = async () => {
+    const [products,setProducts] = useState([])
+    const all_products = async () => {
 
 
         const response_categories = await fetch(
-          'http://127.0.0.1:8000/api/all-categories/',{
+          'http://127.0.0.1:8000/api/all-product/',{
             method:'GET'
           }
         );
         const data = await response_categories.json()
-        setCategories(data)
+        setProducts(data)
         
       };
     
@@ -26,7 +26,7 @@ function AddProduct(){
 
     let  submit = async (e)=>{
         e.preventDefault();
-        const url = 'http://127.0.0.1:8000/api/add-product/'
+        const url = 'http://127.0.0.1:8000/api/create-order/'
         
         const formData = new FormData(e.target)
         formData.append("owner_id",user.id)
@@ -53,18 +53,8 @@ function AddProduct(){
         <label>
         Наименование товара
     </label>
-    <div><input  name='name' className ='fieldl' /> </div>
-    <label>
-    Описание товара
-    
-    </label>
-    <div><input name='description' className ='fieldl' /> </div>
-    <label>
-     Категория продукта
-    </label>
-    <br/>
-    <select name="category_id" >
-        {categories.map(
+    <select name="product_id" >
+        {products.map(
             (text,index)=>{
                 return <option name={text.name} key={index} value={text.name}>{text.name} </option>
             }
@@ -72,14 +62,18 @@ function AddProduct(){
         
         
     </select>
+    <label>
+    Какое количество 
+    
+    </label>
+    <div><input name='quantity' className ='fieldl' /> </div>
+   
     <br></br>
-    <label>Изображение</label>
-    <div><input  type ="file" id='product_img' name='product_img' className ='fieldl' /> </div>
-    <label>Цена</label>
-    <div><input  id='price' name='price' className ='fieldl' /> </div>
+    
+    
     <button type='submit' className='orange-button'>
             
-            Добавить товар
+            Оставить заявку
     </button>
 
     
@@ -97,7 +91,7 @@ function AddProduct(){
 
 }
 
-export default AddProduct;
+export default create_order;
 
 
 

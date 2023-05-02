@@ -16,10 +16,11 @@ import { AuthProvider } from './context/AuthContext';
 import CatalogPage from './pages/CatalogPage';
 import NotificationPage from './pages/notificationPage';
 import profile_page from './pages/profile';
+import AgreementPage from './pages/agreement';
 
 function App() {
     return <div className="App">
-    <Router>
+    {/* <Router>
       <AuthProvider>
         <Navbar/>
         <Route component={Home} path="/home" exact/>
@@ -28,13 +29,14 @@ function App() {
         <PrivateRoute component = {AddProduct} path='/add_product'/>
         <PrivateRoute component = {NotificationPage} path='/notification'/>
         <PrivateRoute component = {profile_page} path='/profile-page'/>
-        {/* <PrivateRoute component = {} path='/agreement'/> */}
+        <PrivateRoute component = {} path='/agreement'/>
         <PrivateRoute component = {CatalogPage} path = '/catalog'/>
           
 
         <Footer/>
       </AuthProvider>
-    </Router>
+    </Router> */}
+    <AgreementPage/>
   </div>
 }
 
