@@ -41,17 +41,41 @@ def get_by_category_name(request):
     type_catalog = request.GET.get('type')
     print(category_name,type_catalog)
     type_catalog ={'supplier':"SUPL",'buyer':"BUYER"}[type_catalog.lower()]
-    products = Product.objects.filter(Q(category__name__icontains = category_name.capitalize()) & Q(owner__type__icontains = type_catalog)).all()
+    
+    products = Product.objects.filter(Q(category__name__icontains = category_name) & Q(owner__type__icontains = type_catalog)).all()
     ser_products = serializers.ProductSerilizer(products,many=True)
     return Response(ser_products.data)
 
+def full_userinfo(pk):
+    
+    res = serializers.CustomUserSerializer(CustomUser.objects.get(user__id = pk)).data
+    res['user'] = serializers.UserSerializer(User.objects.get(id = res['user'])).data
+
+    return res
+
+
+def response_data(r):
+        result = []
+        for v in r:
+            v['from_user'] = full_userinfo(v['from_user'])
+            v['to_user'] = full_userinfo(v['to_user'])
+            v['order'] = serializers.OrderSerializer(Order.objects.get(id = v['order'])).data
+            v['accepted'] = ['accepted','rejected','default'][v['accepted']-1]
+            result.append(v)
+        return result
 
 @api_view(['GET'])
 def get_notifications_from_user(request):
+
+    
     username = request.GET.get('username')
-    notifications = Notification.objects.filter(from_user__username__icontains = username).all()
+    print(username)
+    user = CustomUser.objects.get(user__username = username)
+    notifications = Notification.objects.filter(from_user = user).all()
     ser = serializers.NotificationSerializer(notifications,many = True)
-    return Response(ser.data)
+    response = response_data(ser.data)
+
+    return Response(response)
 
 
 
@@ -59,9 +83,17 @@ def get_notifications_from_user(request):
 @api_view(['GET'])
 def get_notifications_to_user(request):
     username = request.GET.get('username')
-    notifications = Notification.objects.filter(to_user__username__icontains = username).all()
-    ser = serializers.NotificationSerializer(notifications,many = True)
-    return Response(ser.data) 
+    try:
+        user = CustomUser.objects.get(user__username = username)
+        notifications = Notification.objects.filter(to_user = user).all()
+        ser = serializers.NotificationSerializer(notifications,many = True)
+        response = response_data(ser.data)
+        return Response(response)
+
+    except:
+        return Response({'status':'error'})
+    
+
 
 
 @api_view(['POST'])
@@ -89,7 +121,9 @@ def create_notification(request):
         return Response({'status':'succes'})
     return Response({'status':'error'})
 
-
+@api_view(['POST'])
+def create_order(request):
+    pass
 
 
 @api_view(['GET'])
@@ -98,34 +132,41 @@ def all_agreement(request):
     return serializers.AgreementSerializer(agreements,many=True).data
 
 
+@api_view(['POST'])
+def add_product(request):
 
-class AddProductView(views.APIView):
 
-
-    def post(self,request):
-        # product_ser = serializers.ProductSerilizer(data = request.data)
-        owner = request.data['owner']
-        category = request.data['category']
-        user = User.objects.get(id = owner)
-        request.data['owner'] = CustomUser.objects.get(user = user)
-        print('########################################')
-        request.data['category'] = Category.objects.get(name = category)
-        print(request.data)
-        product = Product(**request.data)
-
-        if product:
-            product.save()
-        # if Product.objects.filter(**request.data).exists():
-        #     raise serializers.ValidationError('This data already exists')
-        # if product_ser.is_valid():
-        #     product_ser.save()
-            return Response({
-                "status":'saved'
-                }
-            )
+    # product_ser = serializers.ProductSerilizer(data = request.data)
+    owner_id = request.data['owner_id']
+    user = User.objects.get(id = owner_id)
+    owner = CustomUser.objects.get(user=user)
+    
+    category = Category.objects.get(name = request.data['category_id'])
+    print(owner.user.id)
+    print('####################')
+    result = {
+        "name":request.data['name'],
+        "description":request.data['description'],
+        "price":request.data['price'],
+        'owner':owner,
+        'category':category,
+        'product_img':request.data['product_img']
+    }
+    product = Product.objects.create(**result)
+    
+    if product:
+        product.save()
+    # if Product.objects.filter(**request.data).exists():
+    #     raise serializers.ValidationError('This data already exists')
+    # if product_ser.is_valid():
+    #     product_ser.save()
         return Response({
-            "status":'error'
-        })
+            "status":'saved'
+            }
+        )
+    return Response({
+        "status":'error'
+    })
 
 
 

@@ -4,14 +4,7 @@ import jwt_decode from "jwt-decode";
 import { useHistory } from 'react-router-dom'
 
 
-const users = {
-    "mlt":'SUPL',
-    "aidos":"BUYER"
-}
-let w = [
-    // products[0][1]
 
-]
 
 
 function ClientCatalogPage(){

@@ -74,8 +74,7 @@ function BuyerCatalogPage (props){
                                 <h3>{product.name}</h3>
                                 <strong>{product.price}тг</strong>
                                 <br></br>
-                                <strong>{product.quantity}шт</strong>
-                                <br></br>
+                                
                                 <button>Заказать +</button>
                               </div>
 

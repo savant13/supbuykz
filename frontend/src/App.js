@@ -14,6 +14,8 @@ import PrivateRoute from './utils/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
 
 import CatalogPage from './pages/CatalogPage';
+import NotificationPage from './pages/notificationPage';
+import profile_page from './pages/profile';
 
 function App() {
     return <div className="App">
@@ -24,9 +26,9 @@ function App() {
         <Route component={LoginPage} path="/login" />
         <Route component = {Register} path='/register'/>
         <PrivateRoute component = {AddProduct} path='/add_product'/>
-        <PrivateRoute component = {NotifationPage} path='/notification'/>
-        <PrivateRoute component = {ProfilPage} path='/profile-page'/>
-        <PrivateRoute component = {AgreementPage} path='/agreement'/>
+        <PrivateRoute component = {NotificationPage} path='/notification'/>
+        <PrivateRoute component = {profile_page} path='/profile-page'/>
+        {/* <PrivateRoute component = {} path='/agreement'/> */}
         <PrivateRoute component = {CatalogPage} path = '/catalog'/>
           
 

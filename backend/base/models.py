@@ -79,8 +79,8 @@ class Order(models.Model):
 
 
 class Notification(models.Model):
-    to_user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='to_user')
-    from_user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='from_user')
+    to_user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='user1')
+    from_user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='user2')
     accepted = models.PositiveIntegerField(default=3)
     # 1 is accepted 2 is rejected 3 is default
     order = models.ForeignKey(Order,on_delete=models.CASCADE)

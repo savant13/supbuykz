@@ -24,7 +24,11 @@ function Navbar() {
             </h3>
             <nav>
                 <a href='#'><img src={IMAGES.img2 } height={50} width={60}/><span>Алматы</span></a>
-                <a href='#'><img src={IMAGES.img1} height={50} width={60}/></a>
+                <a  onClick={
+                    ()=>{
+                       history.push('notification')
+                    }
+                }><img src={IMAGES.img1} height={50} width={60}/></a>
                 
                 
             

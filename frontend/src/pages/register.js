@@ -16,9 +16,7 @@ let to_register = async (e)=>{
         }
     )
     console.log(response.json())
-    history = useHistory()
-
-    history.pop()
+    
 
     
 
