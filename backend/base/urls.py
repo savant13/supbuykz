@@ -14,7 +14,7 @@ urlpatterns = [
     path('add-product/',views.add_product),
     path('notification-from/',views.get_notifications_from_user),
     path('notification-to/',views.get_notifications_to_user),
-
+    path('all-product/',views.all_products),
     
     path('product/',views.get_product,name='get_product'),
     path('user-info/<int:pk>',views.profile,name='profile'),

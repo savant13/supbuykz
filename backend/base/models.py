@@ -92,8 +92,8 @@ class Notification(models.Model):
 
 
 class Agreement(models.Model):
-    buyer = models.FileField(upload_to='base/static/media')
-    supplier = models.FileField(upload_to='base/static/media/')
+    buyer = models.FileField(upload_to='base/static/media',blank=True,null=True)
+    supplier = models.FileField(upload_to='base/static/media/',blank=True,null=True)
     checked = models.BooleanField()
     notification = models.ForeignKey(Notification,on_delete=models.CASCADE)
 

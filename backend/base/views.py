@@ -34,6 +34,12 @@ def all_categories(request):
     return Response(serial_categories.data)
 
 
+@api_view(['GET'])
+def all_products(request):
+    products = Product.objects.all()
+    serial_products = serializers.ProductSerilizer(products,many = True)
+    return Response(serial_products.data)
+
 
 @api_view(['GET'])
 def get_by_category_name(request):
@@ -63,6 +69,7 @@ def response_data(r):
             v['accepted'] = ['accepted','rejected','default'][v['accepted']-1]
             result.append(v)
         return result
+
 
 @api_view(['GET'])
 def get_notifications_from_user(request):
@@ -123,8 +130,17 @@ def create_notification(request):
 
 @api_view(['POST'])
 def create_order(request):
-    pass
-
+    product_id = request.data['product_id']
+    quantity = request.data['quantity']
+    city = request.data['city']
+    client = request.data['client']
+    address = request.data['address']
+    order = Order.objects.create(product = Product.objects.get(id = product_id),quantity=quantity,city=city,address=address,client = CustomUser.objects.get(user__id = client))
+    if order:
+        order.save()
+        return Response({'status':'saved'})
+    else:
+        return Response({'status':'error'})
 
 @api_view(['GET'])
 def all_agreement(request):
