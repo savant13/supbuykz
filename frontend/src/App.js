@@ -20,23 +20,23 @@ import AgreementPage from './pages/agreement';
 
 function App() {
     return <div className="App">
-    {/* <Router>
+    <Router>
       <AuthProvider>
         <Navbar/>
-        <Route component={Home} path="/home" exact/>
+        <Route component={Home} path="/" exact/>
         <Route component={LoginPage} path="/login" />
         <Route component = {Register} path='/register'/>
         <PrivateRoute component = {AddProduct} path='/add_product'/>
         <PrivateRoute component = {NotificationPage} path='/notification'/>
         <PrivateRoute component = {profile_page} path='/profile-page'/>
-        <PrivateRoute component = {} path='/agreement'/>
+        <PrivateRoute component = {AgreementPage} path='/agreement'/>
         <PrivateRoute component = {CatalogPage} path = '/catalog'/>
           
 
         <Footer/>
       </AuthProvider>
-    </Router> */}
-    <AgreementPage/>
+    </Router>
+    {/* <AgreementPage/> */}
   </div>
 }
 

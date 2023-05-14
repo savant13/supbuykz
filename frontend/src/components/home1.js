@@ -35,12 +35,12 @@ function Home(){
             <div className='row content-center'>
                 <div className='col'>
                     <button onClick={()=>{
-                         history.push('supllier-catalog')
+                         history.push('login')
                     }} className="orange-button">Заказчикам</button>
                 </div>
                 <div className='col'>
                     <button onClick={()=>{
-                         history.push('buyer-catalog')
+                         history.push('login')
                     }} className="orange-button">Поставщикам</button>
                 
                 

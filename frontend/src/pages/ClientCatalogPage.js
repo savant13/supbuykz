@@ -88,6 +88,9 @@ function ClientCatalogPage(){
                     "Добавит товар"
                     
                     }</button>
+                    <div className="basket">
+                        
+                    </div>
                 </div>
             </div>
             
