@@ -42,10 +42,10 @@ As a buyer user, I want to be able to find a product at a low price at a time co
  
 ## Sitemap 
  
-<img src="https://i.ibb.co/C1RwRGB/sitemap.png" alt="image" border="0"> 
+![alt text](Site map.png)
  
  
 ## Wireframes (Prototype) 
  
-<img src="https://i.ibb.co/C1RwRGB/image_1.png" alt="image" border="0"> 
-<img src="https://i.ibb.co/C1RwRGB/image_2.png" alt="image" border="0">
+<img src="image_1.png" alt="image" border="0"> 
+<img src="image_2.png" alt="image" border="0">
