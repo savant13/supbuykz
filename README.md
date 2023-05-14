@@ -43,7 +43,7 @@ As a buyer user, I want to be able to find a product at a low price at a time co
 ## Sitemap 
  
 
-<img src="Site map.png" alt="image" border="0"> 
+<img src="sitemap.png" alt="image" border="0"> 
 
  
 ## Wireframes (Prototype) 
