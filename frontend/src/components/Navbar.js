@@ -1,55 +1,93 @@
-import { useContext} from 'react';
-import IMAGES from '../constants/image.js';
-import AuthContext from '../context/AuthContext.js';
-import { useHistory } from 'react-router-dom';
-import jwt_decode from "jwt-decode";
-import { useState } from "react"
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { logout } from '../actions/userActions'
+import { useHistory } from "react-router-dom";
+import SearchBarForProducts from './SearchBarForProducts'
+import IMAGES from '../constants/images'
 
-function Navbar() {
-    // let {user} = useContext(AuthContext)
-    let [user, setUser] = useState(()=> localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
+
+function NavBar() {
+
     let history = useHistory()
-    let {logoutUser} = useContext(AuthContext)
-    let isLogin = 'Вход'
-    if (user){
-        isLogin = 'Выход'
+    const dispatch = useDispatch()
+
+    // login reducer
+    const userLoginReducer = useSelector(state => state.userLoginReducer)
+    const { userInfo } = userLoginReducer
+
+    // logout
+    const logoutHandler = () => {
+        dispatch(logout()) // action
+        history.push("/login")
+        window.location.reload()
     }
-    
-    
-    return(
+
+    return (
         <header>
-            <h3 className='text-color-dark'>
-                {/* Hello {user??"".username??""} */}
-                
-            </h3>
-            <nav>
-                <a href='#'><img src={IMAGES.img2 } height={50} width={60}/><span>Алматы</span></a>
-                <a  onClick={
-                    ()=>{
-                       history.push('notification')
-                    }
-                }><img src={IMAGES.img1} height={50} width={60}/></a>
-                
-                
-            
-            <button onClick={()=>{
-                if (user==null){
-                    logoutUser()
-                }
-                else{
-                    history.push('login')
-                }
+            <Navbar  expand="lg" collapseOnSelect className='nvbar'>
+                <Container>
+                    <LinkContainer to="/">
+                        <Navbar.Brand> <img src={IMAGES.sup_buy_icon}/></Navbar.Brand>
+                    </LinkContainer>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
 
-                
-            }} className = 'login-btn'>
-               {isLogin}
-            </button>
-            </nav>
-           
+                            {/* All Products */}
+                            <LinkContainer to="/">
+                                <Nav.Link >All Products</Nav.Link>
+                            </LinkContainer>
 
+                          
 
+                        
+
+                                <span className="">
+                                    <SearchBarForProducts />
+                                </span>
+                            <div className="geo">
+                                <img src={IMAGES.geo_position} />
+                                Алматы
+                            </div>
+                            
+
+                        </Nav>
+
+                        {/* login-logout condition here */}
+
+                        {userInfo ?
+                            <div>
+                                <NavDropdown className="navbar-nav text-capitalize" title={userInfo.username} id='username'>
+                                    <LinkContainer to="/account">
+                                        <NavDropdown.Item>Account Settings</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/all-addresses/">
+                                        <NavDropdown.Item>Address Settings</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/stripe-card-details/">
+                                        <NavDropdown.Item>Card Settings</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/all-orders/">
+                                        <NavDropdown.Item>All Orders</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <NavDropdown.Item onClick={logoutHandler}>
+                                        Logout
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            </div>
+                            :
+
+                            <LinkContainer to="/login">
+                                <Nav.Link className='login-btn-mini'><i className="fas fa-user"></i> Login</Nav.Link>
+                            </LinkContainer>
+                        }
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </header>
-    );
-    
+    )
 }
-export default Navbar;
+
+export default NavBar

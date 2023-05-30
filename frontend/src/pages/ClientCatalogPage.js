@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react"
-import products from "../constants/data"
-import jwt_decode from "jwt-decode";
+
 import { useHistory } from 'react-router-dom'
+import IMAGES from "../constants/image"
+
+const imgs = [
+    IMAGES.pepsi_cola,
+    IMAGES.airan,
+    IMAGES.coka_cola,
+    IMAGES.coka_cola,
+    IMAGES.coka_cola,
+    
+]
 
 
 
@@ -53,7 +62,9 @@ function ClientCatalogPage(){
         <div className="container container-catalog">
             <div className="row">
                 <div className="col">
-                    <h3>Категории</h3>
+                <h3 ><a onClick={(e)=>{
+                        orders_by_categories(e,'')
+                    }}>Категории</a></h3>
                     {categories.map((category,index)=>{
                         return <li key={index}><a href={"#"} onClick={(e)=>{
                             orders_by_categories(e,category.name)
@@ -67,14 +78,18 @@ function ClientCatalogPage(){
                         {orders.map((product,index)=>{
                               
                               return <div className="col canvas-product" key={index}> 
-                                <img src={product.product_img} width={125} height={170}>
+                                <img src={imgs[index]} width={125} height={170}>
                                 </img>
                                 <h3>{product.name}</h3>
                                 <strong>{product.price}тг</strong>
                                 <br></br>
                                 <strong>{product.quantity}шт</strong>
                                 <br></br>
-                                <button>Принять +</button>
+                                <button onClick={
+                                    ()=>{
+                                        history.push('agreement')
+                                    }
+                                }>Принять +</button>
                               </div>
 
                         })}

@@ -11,7 +11,7 @@ let CatalogPage = () =>{
     let {user} = useContext(AuthContext)
     
     
-    console.log(user.type)
+   
     switch (user.type) {
         case 'SUPL':
             return <ClientCatalogPage/>
@@ -26,7 +26,7 @@ let CatalogPage = () =>{
             
     }
 
-    return <h1>Can you reload page </h1>
+    return <BuyerCatalogPage/>
 }
 
 export default CatalogPage;

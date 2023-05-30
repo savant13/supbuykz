@@ -1,37 +1,79 @@
-import React,{useContext} from 'react';
-import AuthContext from '../context/AuthContext.js';
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { Form, Button, Row, Col } from 'react-bootstrap'
+import { login } from '../actions/userActions'
+import Message from '../components/Message';
 
-const LoginPage = ()=>{
-    let {loginUser} = useContext(AuthContext)
-    const history = useHistory()
 
+function LoginPage({ history }) {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+    const dispatch = useDispatch()
+
+    // reducer
+    const userLoginReducer = useSelector(state => state.userLoginReducer)
+    const { error, userInfo } = userLoginReducer
+
+    useEffect(() => {
+        if (userInfo) {
+            history.push('/') // homepage
+        }
+    }, [history, userInfo])
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        dispatch(login(username, password))
+    }
 
     return (
-        <div className='container login-container'>
-            <div className='row'>
-                <div className='col'>
-                <h2>Supbuy.kz - Вход</h2>
-                <form onSubmit={loginUser}>
-                <div><input className ='fieldl' placeholder='Ваш имя' name='username'></input></div>
-                <div><input className ='fieldl' placeholder='Пароль' type='password' name='password'></input></div>
-                <button type='submit' className='orange-button'>Войти</button>
-                <button type='button' className='orange-button' onClick={(e)=>{
-                    e.preventDefault()
+        <div className='login-container'>
+            <Row className='justify-content-md-center '>
+                <Col xs={12} md={6} lg={4}>                    
+                    <h3>Supbuy.kz - Вход</h3>                    
+                    {error && <Message variant='danger'>{error}</Message>}
+                    <Form onSubmit={submitHandler} className='login-form'>
+                        <Form.Group controlId='username'>
+                         
+                            <Form.Control
+                                type="text"
+                                placeholder="Ваше логин"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className='field-login'
+                            >
+                            </Form.Control>
+                        </Form.Group>
 
-                    history.push('/register')
-                }}>Регистрация</button>
-                <a href='#'>Забыли пароль?</a>
-                </form>
-                </div>
+                        <Form.Group controlId='password'>
+                          
+                            <Form.Control
+                                type="password"
+                                placeholder="Пароль"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className='field-login'
+                            >
+                            </Form.Control>
+                        </Form.Group>
 
-            </div>
-            
+                        <Button type="submit" variant='primary'>Sign In</Button>
+                    </Form>
+
+                    <Row className="py-3">
+                        <Col>
+                        Еще не регистрировались?
+                    <Link
+                                to={`/register`}
+                            > Регистрирация</Link>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         </div>
+
     )
-
-
-
 }
 
-export default LoginPage;
+export default LoginPage

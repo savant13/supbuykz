@@ -3,9 +3,16 @@ import { useHistory } from 'react-router-dom'
 import IMAGES from "../constants/image"
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import AuthContext from '../context/AuthContext.js';
 
+const imgs = [
+    IMAGES.pepsi_cola,
+    IMAGES.coka_cola,
+    IMAGES.maxi_chai,
+    IMAGES.coka_cola,
+    IMAGES.coka_cola,
 
+    IMAGES.airan
+]
 
 
 
@@ -76,13 +83,15 @@ function BuyerCatalogPage(props){
                         {orders.map((product,index)=>{
                               
                               return <div className="col canvas-product" key={index}> 
-                                <img src={product.product_img} width={125} height={170}>
+                                <img src={imgs[index]} width={125} height={170}>
                                 </img>
                                 <h3>{product.name}</h3>
                                 <strong>{product.price}тг</strong>
                                 <br></br>
                                 
-                                <button>Заказать +</button>
+                                <button onClick={ ()=>{
+                                        history.push('agreement')
+                                    }}>Заказать +</button>
                               </div>
 
                         })}
@@ -93,7 +102,7 @@ function BuyerCatalogPage(props){
                     <button className="orange-button" onClick={()=>{
                         history.push('add_product')
                     }}>{
-                    "Оставить заявку"
+                    "Добавить  товар"
                     
                     }</button>
                     <div className="basket">
