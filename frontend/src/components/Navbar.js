@@ -37,7 +37,7 @@ function NavBar() {
 
                             {/* All Products */}
                             <LinkContainer to="/">
-                                <Nav.Link >All Products</Nav.Link>
+                                <Nav.Link >Все продукты</Nav.Link>
                             </LinkContainer>
 
                           
@@ -61,19 +61,19 @@ function NavBar() {
                             <div>
                                 <NavDropdown className="navbar-nav text-capitalize" title={userInfo.username} id='username'>
                                     <LinkContainer to="/account">
-                                        <NavDropdown.Item>Account Settings</NavDropdown.Item>
+                                        <NavDropdown.Item>Профиль</NavDropdown.Item>
                                     </LinkContainer>
                                     <LinkContainer to="/all-addresses/">
-                                        <NavDropdown.Item>Address Settings</NavDropdown.Item>
+                                        <NavDropdown.Item>Настройки адреса</NavDropdown.Item>
                                     </LinkContainer>
                                     <LinkContainer to="/stripe-card-details/">
-                                        <NavDropdown.Item>Card Settings</NavDropdown.Item>
+                                        <NavDropdown.Item>Настройки карты</NavDropdown.Item>
                                     </LinkContainer>
                                     <LinkContainer to="/all-orders/">
-                                        <NavDropdown.Item>All Orders</NavDropdown.Item>
+                                        <NavDropdown.Item>Все заказы</NavDropdown.Item>
                                     </LinkContainer>
                                     <NavDropdown.Item onClick={logoutHandler}>
-                                        Logout
+                                    Выйти
                                     </NavDropdown.Item>
                                 </NavDropdown>
                             </div>

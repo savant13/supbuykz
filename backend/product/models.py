@@ -10,6 +10,7 @@ class Product(models.Model):
     stock = models.BooleanField(default=False)
     image = models.ImageField(null=True, blank=True)
     category = models.CharField(null=True,default=None,max_length=15)
+    type_product = models.CharField(max_length=10,default='B')
 
     def __str__(self):
         return self.name

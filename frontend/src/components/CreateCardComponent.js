@@ -141,13 +141,13 @@ const CreateCardComponent = ({ stripeCards, addressSelected }) => {
             <div className="card px-4 py-4">
                 <button className={showStripeCard
                     ? "btn btn-sm btn-danger mb-3 button-focus-css"
-                    : "btn btn-sm btn-primary mb-3 button-focus-css"}
+                    : "btn-card"}
                     onClick={() =>
                         setShowStripeCard(!showStripeCard)
                     }>
                     {showStripeCard
                         ? "close"
-                        : "Enter stripe card"}
+                        : "Введите страйп-карту"}
                 </button>
 
                 {showStripeCard ?

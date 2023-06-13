@@ -1,4 +1,4 @@
-from .models import StripeModel, BillingAddress, OrderModel
+from .models import StripeModel, BillingAddress, OrderModel,XUser
 from django.http import Http404
 from rest_framework import status
 from rest_framework.views import APIView
@@ -17,6 +17,7 @@ from .serializers import (
     UserSerializer, 
     UserRegisterTokenSerializer, 
     CardsListSerializer, 
+    XUserSerializer,
     BillingAddressSerializer,
     AllOrdersListSerializer
 )
@@ -50,13 +51,15 @@ class UserRegisterView(APIView):
                     email=email,
                     password=make_password(data["password"]),
                 )
-                extra_user = models.XUser.objects.create(
+                XUser = models.XUser.objects.create(
                     licenze = data["licenze"],
                     type_user = data["type_user"],
                     user = user,
                     
                 )
+                
                 serializer = UserRegisterTokenSerializer(user, many=False)
+                
                 return Response(serializer.data)
 
 # login user (customizing it so that we can see fields like username, email etc as a response 
@@ -67,10 +70,19 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
 
         serializer = UserRegisterTokenSerializer(self.user).data
-
-        for k, v in serializer.items():
-            data[k] = v
+        # addding xuser
         
+        xuser = XUser.objects.filter(user = self.user).first()
+        serializer_2 = XUserSerializer(xuser,many=False).data
+
+        response = {**serializer,**serializer_2}
+        
+        
+        for k, v in response.items():
+            data[k] = v
+
+        print(response)
+
         return data
 
 class MyTokenObtainPairView(TokenObtainPairView):

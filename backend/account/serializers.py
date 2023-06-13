@@ -1,4 +1,4 @@
-from .models import StripeModel, BillingAddress, OrderModel
+from .models import StripeModel, BillingAddress, OrderModel,XUser
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -50,3 +50,9 @@ class AllOrdersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderModel
         fields = "__all__"
+
+class XUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = XUser
+        fields = '__all__'

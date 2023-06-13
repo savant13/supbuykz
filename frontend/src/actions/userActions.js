@@ -72,13 +72,13 @@ export const login = (username, password) => async (dispatch) => {
             { 'username': username, 'password': password },
             config
         )
-
+        
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data
         })
-
-        localStorage.setItem('userInfo', JSON.stringify(data)) // will create a new key-value pair in localStorage
+        localStorage.setItem('userInfo', JSON.stringify(data))
+         // will create a new key-value pair in localStorage
         // also see store.js file
 
     } catch (error) {
@@ -107,20 +107,19 @@ export const register = (username, email, password,type_user,licenze) => async (
 
         const config = {
             headers: {
-                'Content-type': 'application/json'
+                "Content-Type": "multipart/form-data",
+                // 'Content-type': 'application/json'
             }
         }
+        let form_data = new FormData()
+        form_data.append('username',username)
+        form_data.append('email',email)
+        form_data.append('password',password)
+        form_data.append('type_user',type_user)
+        form_data.append('licenze',licenze)
 
         const { data } = await axios.post(`/account/register/`,
-            { 'username': username, 
-            'email': email, 
-            'password': password,
-            'type_user':type_user,
-            'licenze':licenze,
-             
-        
-        
-        },
+            form_data,
             config
         )
 

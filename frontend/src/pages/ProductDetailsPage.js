@@ -95,7 +95,7 @@ function ProductDetailsPage({ history, match }) {
                     <Container>
                         <Row>
                             <Col md={6}>
-                                <Card.Img variant="top" src={product.image} height="420" />
+                                <Card.Img variant="top" src={product.image} height="411px" width="400px"/>
 
                                 {/* Product edit and delete conditions */}
 
@@ -119,35 +119,45 @@ function ProductDetailsPage({ history, match }) {
                             </Col>
 
                             <Col sm>
-                                <b>{product.name}</b>
-                                <hr />
-                                <span className="justify-description-css">
-                                    <p>{product.description}</p>
-                                </span>
-                                <span style={{
+                                <div style={{
                                     display: "flex",
                                     justifyContent: "center",
                                     border: "1px solid",
-                                    borderColor: "#C6ACE7",
-                                    padding: "2px"
+                                    borderRadius:"4px",
+                                    color:"#F89F21",
+                                    borderColor: "#F89F21",
+                                    padding: "2px",
+                                    alignItems:'center'
                                 }}>
-                                    Price:<span className="text-success ml-2">₹ {product.price}</span>
-                                </span>
-                            </Col>
-                            <Col sm>
-                                <b>Buy</b>
-                                <hr />
-                                {product.stock ?
+                                    <div className="col"><b>{product.price} тг</b></div>
+                                    <div className='col'>
+                                    {product.stock ?
                                     <Link to={`${product.id}/checkout/`}>
-                                        <button className="btn btn-primary">
-                                            <span>Pay with Stripe</span>
+                                        <button className="btn1">
+                                            <span style={{
+                                                fontSize:"20px",
+                                                fontWeight:"700",
+                                            }}>В корзину</span>
                                         </button>
                                     </Link>
                                     :
                                     <Message variant='danger'>
                                         Out Of Stock!
                                     </Message>}
+
+                                    </div>
+                                    
+                                </div>
+                                <h5>Страна-производитель: Казахстан</h5>
+                                <h5>Бренд: {product.name}</h5>
+                                
+                                <hr />
+                                <span className="justify-description-css">
+                                    <p>{product.description}</p>
+                                </span>
+                                
                             </Col>
+                            
                         </Row>
 
                     </Container>

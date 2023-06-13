@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import React from 'react'
 
-function Product({ product }) {
+function Product({ product ,basket,setBasket}) {
     return (
         <div>
             <Card className="mb-4 rounded">
@@ -22,8 +22,33 @@ function Product({ product }) {
                          {product.price} тг
                     </Card.Text>
                     <Card.Footer>
-                        <button className='btn-product'>
-                            Принять
+                        <button className='btn-product' onClick={(e)=>{
+                            e.preventDefault()
+                                let count = 1;
+                                if (basket[String(product.id)]){
+                                    console.log(basket[String(product.id)].count)
+                                    count = basket[String(product.id)].count + 1
+                                }
+                            
+                                let new_basket = {}
+                                for (const key in basket) {
+                                    new_basket[key] = basket[key]
+                                }
+                                new_basket[String(product.id)] = {
+                                    name:product.name,
+                                    price:product.price,
+                                    count:count,
+                                    image:product.image
+    
+                                }
+                                setBasket(new_basket)
+
+                            
+                           
+                           
+                            
+                        }}>
+                            {product.type_product!='B'?"Заказать":"Принят"}
                         </button>
                     </Card.Footer>
                 </Card.Body>

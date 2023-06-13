@@ -7,6 +7,7 @@ import Product from '../components/Product'
 import { useHistory,Link } from "react-router-dom";
 import { CREATE_PRODUCT_RESET ,CATEGORIES} from '../constants'
 import Button from 'react-bootstrap/Button';
+import CardBasket from '../components/Basket'
 
 
 
@@ -16,10 +17,14 @@ function ProductsListPage() {
     let searchTerm = history.location.search
     const dispatch = useDispatch()
     const [categoryTerm,setCategoryTerm] = useState('')
+    const [basket,setBasket] = useState({})
     
     // products list reducer
     const productsListReducer = useSelector(state => state.productsListReducer)
     const { loading, error, products } = productsListReducer
+
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    
 
     useEffect(() => {
         dispatch(getProductsList())
@@ -36,6 +41,8 @@ function ProductsListPage() {
             </div>
         )
     }
+    const type_user = userInfo?userInfo.type_user:''
+    
 
     return (
         <Row>
@@ -74,17 +81,17 @@ function ProductsListPage() {
                     {/* If length of the filter result is equal to 0 then show 'nothing found' message
                         with help of showNothingMessage function else show the filtered result on the
                         webpage and then run the map function */}
-
+                   
                     {(products.filter((item) =>
                         item.name.toLowerCase().includes(searchTerm !== "" ? searchTerm.split("=")[1] : "")
                         && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='')
                     )).length === 0 ? showNothingMessage() : (products.filter((item) =>
                     item.name.toLowerCase().includes(searchTerm !== "" ? searchTerm.split("=")[1] : "")
-                    && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='')
+                    && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='') && (item.type_product[0] != type_user[0] || type_user=='admin')
                     )).map((product, idx) => (
                         <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
                             <div className="mx-2"> 
-                                <Product product={product} />
+                                <Product product={product} basket = {basket} setBasket = {setBasket}/>
                             </div>
                         </Col>
                     )
@@ -94,8 +101,16 @@ function ProductsListPage() {
                 </Col>
                 <Col lg={2}>
                 <Link to="/new-product/">
-                    <button className='btn-custom' >Добавить свой товар</button>
+                    <button className='btn-custom' >{type_user=='Buyer'?"Оставит заявку":"Добавить свой товар"}</button>
                 </Link>
+                <div className='basket'>
+                    <h3>Корзина</h3>
+                    <CardBasket basket = {basket} setBasket={setBasket} />
+
+                    
+
+
+                </div>
                 </Col>
         </Row>
     )

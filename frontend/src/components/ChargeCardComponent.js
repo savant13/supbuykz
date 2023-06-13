@@ -61,10 +61,10 @@ const ChargeCardComponent = ({ product, match, selectedAddressId, addressSelecte
         <div>
             {chargeError ? <Message variant="danger">{chargeError}</Message> : ""}
             <span className="text-info">
-                <h5>Confirm payment</h5>
+                <h5>Подтвердить платеж</h5>
             </span>
             <div className="mb-2">
-                Using Card: XXXX XXXX XXXX {cardData.card_data.last4}
+            Использование карты: XXXX XXXX XXXX {cardData.card_data.last4}
             </div>
             <Form onSubmit={onSubmit}>
 
@@ -77,11 +77,11 @@ const ChargeCardComponent = ({ product, match, selectedAddressId, addressSelecte
                             role="status"
                             aria-hidden="true"
                         />
-                        {" "}Processing Payment...
+                        {" "}Обработка платежа...
                     </Button>
                     :
                     <Button variant="primary" type="submit" style={{ width: "100%" }}>
-                        Pay ₹{product.price}
+                        Pay {product.price}тг
                     </Button>
                 }
             </Form>
@@ -93,22 +93,22 @@ const ChargeCardComponent = ({ product, match, selectedAddressId, addressSelecte
                 {address ?
                     <div>
                         <span className="text-info">
-                            <b><em>Will be delievered at this address</em></b>
+                            <b><em>Доставим по этому адресу</em></b>
                         </span>
                         <p></p>
-                        <p><b>Name: </b>{address ? address.name : ""}</p>
-                        <p><b>Phone Number: </b>{address ? address.phone_number : ""}</p>
-                        <p><b>House Number: </b>{address ? address.house_no : ""}</p>
-                        <p><b>Landmark: </b>{address ? address.landmark : ""}</p>
-                        <p><b>City: </b>{address ? address.city : ""}</p>
-                        <p><b>State: </b>{address ? address.state : ""}</p>
-                        <p><b>Pin Code/Zip Code: </b>{address ? address.pin_code : ""}</p>
+                        <p><b>Имя: </b>{address ? address.name : ""}</p>
+                        <p><b>Номер телефона: </b>{address ? address.phone_number : ""}</p>
+                        <p><b>Номер дома: </b>{address ? address.house_no : ""}</p>
+                        <p><b>Ориентир: </b>{address ? address.landmark : ""}</p>
+                        <p><b>Город: </b>{address ? address.city : ""}</p>
+                        
+                        <p><b>Пин-код/почтовый индекс: </b>{address ? address.pin_code : ""}</p>
                     </div>
                     :
                     ""
                 }
             </Card>
-            <Link to="#" onClick={() => window.location.reload()}>Select a different card to pay</Link>
+            <Link to="#" onClick={() => window.location.reload()}>Выберите другую карту для оплаты</Link>
 
         </div >
     )

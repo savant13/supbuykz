@@ -20,6 +20,8 @@ import ProductUpdatePage from './pages/ProductUpdatePage'
 import NotFound from './pages/NotFoundPage'
 import './App.css';
 import Footer from './components/Footer'
+import AllCheckoutPage from './pages/AllCheckoutPage'
+import AgreementPage from './pages/AgreementPage'
 
 
 const App = () => {
@@ -35,7 +37,9 @@ const App = () => {
             <Route path="/product/:id/" component={ProductDetailsPage} exact />
             <Route path="/product-update/:id/" component={ProductUpdatePage} exact />
             <Route path="/product/:id/checkout/" component={CheckoutPage} exact />
+            <Route path ="/basket/" component={AllCheckoutPage}/> 
             <Route path="/payment-status" component={PaymentStatus} exact />
+            <Route path='/agreement' component={AgreementPage} exact/>
             <Route path="/login" component={Login} exact />
             <Route path="/register" component={Register} exact />
             <Route path="/account" component={AccountPage} exact />

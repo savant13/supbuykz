@@ -107,17 +107,22 @@ function AccountPage() {
                             <Card.Body>
                                 <div>
                                 <label htmlFor="name">Имя:</label>
-                                <input id="name" type="text" placeholder={userAccDetails.username} disabled/>
+                                <input id="name" type="text" placeholder={userInfo.username} disabled/>
 
                                 </div>
                                 <div>
                                 <label htmlFor="email">Электронная почта:</label>
-                                <input id="email" type="text" placeholder={userAccDetails.email} disabled/>
+                                <input id="email" type="text" placeholder={userInfo.email} disabled/>
 
                                 </div>
                                 <div>
                                 <label htmlFor="phone-number">Номер телефона:</label>
                                 <input id="phone-number" type="text" placeholder='+7' disabled/>
+
+                                </div>
+                                <div>
+                                <label htmlFor="phone-number">Тип:</label>
+                                <input id="type_user" type="text" placeholder={userInfo.type_user} disabled/>
 
                                 </div>
                                 <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

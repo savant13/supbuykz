@@ -28,12 +28,13 @@ function RegisterPage({ history, variant }) {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // console.log(e.target.typeUser.value)
-        // if (password !== confirmPassword) {
-        //     setMessage('Passwords do not match!')
-        // } else {
-        //     dispatch(register(username, email, password,typeUser,licenze))
-        // }
+        console.log(e.target.typeUser.value)
+        console.log(e.target.licenze.value)
+        if (password !== confirmPassword) {
+            setMessage('Passwords do not match!')
+        } else {
+            dispatch(register(username, email, password,e.target.typeUser.value,e.target.licenze.files[0]))
+        }
     }
 
     return (

@@ -1,9 +1,5 @@
-import { useContext, useState } from "react";
-import DownloadPDFButton from "../components/download_pdf";
-import AuthContext from "../context/AuthContext";
 
 const AgreementPage = ()=>{
-    // const {user} = useContext(AuthContext)
 
 
     return <div className="container cnt-agreement">
@@ -16,7 +12,7 @@ const AgreementPage = ()=>{
             </div>
             <div className="col part-center">
                 
-                    <DownloadPDFButton text='Договор'/>
+                   
                 
             </div>
             <div className="col part-center">

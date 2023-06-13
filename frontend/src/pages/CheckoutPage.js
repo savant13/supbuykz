@@ -102,27 +102,18 @@ const CheckoutPage = ({ match }) => {
                                                 <h5 className="card-title text-capitalize">
                                                     {product.name}
                                                 </h5>
-                                                <span className="card-text text-success">₹ {product.price}</span>
+                                                <span className="card-text text-success">{product.price} тг</span>
                                             </Col>
                                         </Row>
                                     </Container>
                                 </Card.Body>
                             </Card>
 
-                            <span style={{ display: "flex" }}>
-                                <h3>Billing Address</h3>
-                                <Link
-                                    className="ml-2 mt-2"
-                                    to="/all-addresses/"
-                                >
-                                    Edit/Add Address
-                                </Link>
-                            </span>
-                            <UserAddressComponent handleAddressId={handleAddressId} />
+                           
                         </Col>
                         <Col xs={6}>
                             <h3>
-                                Payments Section
+                            Раздел платежей
                             </h3>
                             {success ?
                                 <ChargeCardComponent

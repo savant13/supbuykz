@@ -26,7 +26,7 @@ class ProductDetailView(APIView):
 
 class ProductCreateView(APIView):
 
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = ()
 
     def post(self, request):
         user = request.user
@@ -36,8 +36,10 @@ class ProductCreateView(APIView):
             "name": data["name"],
             "description": data["description"],
             "price": data["price"],
-            "stock": data["stock"],
+            "stock":True,
             "image": data["image"],
+            "category":data['category'],
+            "type_product":data['type_product']
         }
 
         serializer = ProductSerializer(data=product, many=False)
