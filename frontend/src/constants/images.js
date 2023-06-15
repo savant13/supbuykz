@@ -10,9 +10,16 @@ import request3 from '../images/request3.png'
 import one from '../images/img1.png'
 import two from '../images/img2.png'
 import three from '../images/img3.png'
+import korzina from '../images/korzina.png';
+import download_button from '../images/download.png'
+import doc_button from '../images/doc.png'
+import pencil from '../images/pencil.png'
+import zaiavka from '../images/zaiavka.png'
+import document_docx from '../data/Образец_договора_поставки_товара_заключаемого_между_юридическими.docx'
 
 
 const IMAGES = {
+    document_pdf:document_docx,
     sup_buy_icon:sup_buy,
     geo_position:geo_position,
     custumer_icon:custumer_icon,
@@ -27,7 +34,14 @@ const IMAGES = {
     request3:request3,
     one:one,
     two:two,
-    three:three
+    three:three,
+    korzina:korzina,
+    doc_button:doc_button,
+    download_button:download_button,
+    pencil:pencil,
+    zaiavka:zaiavka,
+
+
 
 
 }

@@ -19,7 +19,7 @@ function CardBasket({basket,setBasket}){
     
     const [countProduct,setCountProduct] = useState(Object.keys(basket).length)
     
-
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
     // setCountProduct(Object.keys(basket).length)
 
     return (
@@ -131,11 +131,12 @@ function CardBasket({basket,setBasket}){
         <hr></hr>
         <div className='row' style={{justifyContent:'space-around',alignItems:'center',margin:'20px 0px'}}>
                 <div className='col-8'>
-                    <Link to='/basket/' >
+                    <Link to={userInfo.type_user=='B'?"/basket/":"/agreement"} >
 
                     <button className='btn1' onClick={(e)=>{
                         const jsoned = JSON.stringify(basket)
                         localStorage.setItem('basket',jsoned)
+
                     }}>
                         Оформить
 
