@@ -73,11 +73,14 @@ export const login = (username, password) => async (dispatch) => {
             config
         )
         
+        localStorage.setItem('userInfo', JSON.stringify(data))
+        
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data
         })
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        
+        
          // will create a new key-value pair in localStorage
         // also see store.js file
 
