@@ -58,7 +58,7 @@ function LoginPage({ history }) {
                             </Form.Control>
                         </Form.Group>
 
-                        <Button type="submit" variant='primary'>Sign In</Button>
+                        <Button type="submit" variant='primary'>Вход</Button>
                     </Form>
 
                     <Row className="py-3">

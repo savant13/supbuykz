@@ -66,7 +66,7 @@
   height: 50.98px;
 
   background: #E8E8E8;
-  border-radius: 10px;
+  border-radius: 20px;
 
 }
 .content-register{
@@ -77,9 +77,16 @@
   border:none;
   width: 500px;
   word-wrap: normal;
-  margin-top: 50px;
-  padding: 10px 30px;
+  margin-top: 150px;
+  padding: 30px 50px;
+  height: 600px;
+  align-items: center;
+  padding-top: 60px;
+  
 
+}
+.content-register p{
+  margin-left: 10px;
 }
 #all-category{
   text-align: center;
@@ -147,11 +154,12 @@ footer > .container > .row >.col>* {
 .ftr-btn{
   height: 75px;
   opacity: 100%;
-  width: 300px;
+  width: 200px;
   padding: 0px;
   font-size: large;
   text-align: center;
   margin: 5px 0px;
+  border-radius: 30px;
 }
 /* FOOTER */
 
@@ -350,5 +358,15 @@ linear-gradient(0deg, #F89F21, #F89F21);
 
 .add-product div{
   margin: 20px 0px;
+  
 
+}
+.add-product {
+  justify-content:space-around;
+}
+.add-product img{
+  
+}
+input#file-field{
+  display:none;
 }

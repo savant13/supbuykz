@@ -33,7 +33,7 @@ const ProductCreatePage = () => {
     const checkTokenValidationReducer = useSelector(state => state.checkTokenValidationReducer)
     const { error: tokenError } = checkTokenValidationReducer
 
-    const categories = ['Напитки','Молочные продукты','Морские продукты',"Мясо"]
+    const categories = ['Напитки','Молочные продукты','Морепродукты',"Мясо",'Свежие овощи и фрукты','Хлеб, выпечка']
     useEffect(() => {
         if (!userInfo) {
             history.push("/login")
@@ -105,25 +105,26 @@ const ProductCreatePage = () => {
         <div>
             {/* {productCreationError && <Message variant='danger'>{productCreationError.image[0]}</Message>} */}
 
-                <h1 style={{
+                <h3 style={{
                     color:'#F89F21',
                     textAlign:'center',
                     fontWeight:'900'
-                }}>{userInfo.type_user!='Buyer'?"Добавить новый товар":'Заявка на покупку'}</h1>
+                }}>{userInfo.type_user!='Buyer'?"Добавить новый товар":'Заявка на покупку'}</h3>
                 
             
             <Row className='add-product'>
                     <Col style={{
                        
-                        textAlign:'center'
-                    }}>
+                        textAlign:'center',
+                        
+                    }} md={2}>
                     <div>
-                    <img src={content.images[0]}> 
+                    <img src={content.images[0]} height={150}> 
                     </img>
 
                     </div>
                     <div>
-                    <img src={IMAGES.one}> 
+                    <img src={IMAGES.one} height={50}> 
                     </img>
 
                     </div>
@@ -135,17 +136,17 @@ const ProductCreatePage = () => {
                     
                     </Col>
 
-                    <Col style={{
+                    <Col md={2} style={{
                        
                        textAlign:'center'
                    }}>
                    <div>
-                   <img src={content.images[1]}> 
+                   <img src={content.images[1]} height={150}> 
                    </img>
 
                    </div>
                    <div>
-                   <img src={IMAGES.two}> 
+                   <img src={IMAGES.two} height={50}> 
                    </img>
 
                    </div>
@@ -156,18 +157,18 @@ const ProductCreatePage = () => {
                    
                    
                    </Col> 
-                   <Col style={{
+                   <Col md={2} style={{
                        
                        textAlign:'center',
                        
                    }}>
                    <div>
-                   <img src={content.images[2]}> 
+                   <img src={content.images[2]} height={150}> 
                    </img>
 
                    </div>
                    <div>
-                   <img src={IMAGES.three}> 
+                   <img src={IMAGES.three} height={50}> 
                    </img>
 
                    </div>
@@ -184,6 +185,17 @@ const ProductCreatePage = () => {
                
              
             </Row>
+            
+            <div style={{
+                width:'50%',
+                display:'relative',
+                marginLeft:'400px'
+                
+            }}>
+
+
+
+            
             <Form onSubmit={onSubmit}>
 
                 <Form.Group controlId='name'>
@@ -227,8 +239,13 @@ const ProductCreatePage = () => {
                     
                     
                 </Form.Group>
-                <Form.Group controlId='categoryProduct' className='category-input'>
-                    <select>
+                
+                <Row>
+                    <Col>
+                    <Form.Group controlId='categoryProduct' className='category-input'>
+                    <select style={{
+                        height:'40px',
+                    }}>
                     {categories.map((value,index)=>{
                             return <option
                             inline
@@ -249,8 +266,69 @@ const ProductCreatePage = () => {
                         
                         
                 </Form.Group>
+                    
+                    
+                    </Col>
+                    <Col>
+                    <Form.Group controlId='image'>
+                    <Form.Label htmlFor='img'>
+                        <b>
+                        Изображение
+                        </b>
+                        <div style={{
+                           
+                            height: '40px',
+                            width:"300px",
+                            background: '#FFFFFF',
+                            border: '1px solid #CED4DA',
+                            borderRadius: '4.2px',
+                            
+                        }}>
 
-                
+                        </div>
+                    </Form.Label>
+                    <Form.Control
+                        id='img'
+                        style={{
+                            display:'none'
+                            
+                        }}
+                        required
+                        type="file"
+                        onChange={(e) => setImage(e.target.files[0])}
+                    >
+                    </Form.Control>
+                </Form.Group>
+                    
+                    
+                    </Col>
+               
+               
+
+
+                </Row>
+
+
+                <Row>
+                    <Col md={4}>
+                <Form.Group controlId='count'>
+                    <Form.Label>
+                        <b>
+                        Количество
+                        </b>
+                    </Form.Label>
+                    <Form.Control
+                        required
+                        type="text"
+                        value={description}
+                        placeholder=""
+                        onChange={(e) => setDescription(e.target.value)}
+                    >
+                    </Form.Control>
+                </Form.Group>
+                </Col>
+
+                <Col md={4}>
 
                 <Form.Group controlId='price'>
                     <Form.Label>
@@ -270,6 +348,15 @@ const ProductCreatePage = () => {
                     >
                     </Form.Control>
                 </Form.Group>
+                </Col>
+
+                </Row>
+                
+                
+
+                
+
+                
 
                 {/* <span style={{ display: "flex" }}>
                     <label>In Stock</label>
@@ -281,20 +368,7 @@ const ProductCreatePage = () => {
                     />
                 </span> */}
 
-                <Form.Group controlId='image'>
-                    <Form.Label>
-                        <b>
-                        Изображение
-                        </b>
-                    </Form.Label>
-                    <Form.Control
-                        required
-                        type="file"
-                        onChange={(e) => setImage(e.target.files[0])}
-                    >
-                    </Form.Control>
-                </Form.Group>
-
+                
                 <Button
                 style={{
                     margin:'5px 10px'
@@ -317,6 +391,7 @@ const ProductCreatePage = () => {
                     Cancel
                 </Button>
             </Form>
+            </div>
         </div>
     )
 }

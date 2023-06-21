@@ -131,4 +131,4 @@ export const CHANGE_DELIVERY_STATUS_RESET = "CHANGE_DELIVERY_STATUS_RESET"
 
 // categories of products
 
-export const CATEGORIES = ['Напитки','Молочные продукты','Морские продукты','Мясо']
+export const CATEGORIES =  ['Напитки','Молочные продукты','Морепродукты',"Мясо",'Свежие овощи и фрукты','Хлеб, выпечка']

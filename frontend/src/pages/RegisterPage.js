@@ -39,13 +39,16 @@ function RegisterPage({ history, variant }) {
 
     return (
         <div>
-            <Row className='justify-content-md-center'>
-                <Col xs={12} md={6}>
+            <Row className='justify-content-md-center' style={{
+                marginTop:'100px'
+            }}>
+                <Col xs={12} md={5}>
                     <h1>Регистрация </h1>
                     <p>Создайте свою учетную запись, чтобы получить все функции</p>
                     {message && <Message variant='danger'>{message}</Message>}
                     {error && <Message variant='danger'>{error}</Message>}
                     <Form onSubmit={submitHandler}>
+                        
 
                         <Form.Group controlId='name' className='register-field' >
                             
@@ -59,6 +62,44 @@ function RegisterPage({ history, variant }) {
                             </Form.Control>
                         </Form.Group>
 
+                        <Form.Group controlId='IIN_BIN' className='register-field' >
+                            
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="ИИН/БИН"
+                                value={''}
+                                onChange={(e) => {}}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId='full_name' className='register-field' >
+                            
+                            <Form.Control
+                                required
+                                type="text"
+                                placeholder="Полное имя"
+                                value={''}
+                                onChange={(e) => {}}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId='mobile_phone' className='register-field' >
+                            
+                            <Form.Control
+                                required
+                                type="text"
+                                
+                                placeholder="Мобильный телефон"
+                                value={''}
+                                onChange={(e) => {}}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                        
+
+                        
+
                         <Form.Group controlId='email' className='register-field'>
                             
                             <Form.Control
@@ -67,6 +108,19 @@ function RegisterPage({ history, variant }) {
                                 placeholder="Электронная  почта"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId='address' className='register-field' >
+                            
+                            <Form.Control
+                                required
+                                type="text"
+                                
+                                placeholder="Юридический адрес "
+                                value={''}
+                                onChange={(e) => {}}
                             >
                             </Form.Control>
                         </Form.Group>
@@ -115,24 +169,40 @@ function RegisterPage({ history, variant }) {
                         />
                        
                         </Form.Group>
-                        <Form.Group controlId="licenze" className="mb-3">
-                        <Form.Label>Лицензия</Form.Label>
-                        <Form.Control type="file" size="lg" />
+                        <Form.Group controlId="licenze" className="register-field" >
+                        <Form.Label htmlFor='file-field' style={{
+                             width: '460.69px',
+                             height: '50.98px',
+                             color:'gray',
+                             padding:'15px 15px',
+                            
+                             background: '#E8E8E8',
+                             borderRadius: '20px'
+                        }}> Подтверждающий документ/лицензия </Form.Label>
+                        <Form.Control type="file" size="lg" id='file-field' style={{
+                           
+                            
+                        }} placeholder='d'/>
                         </Form.Group>
 
-                        <Button type="submit" variant='primary' className='btn-custom'>Зарегистрироваться</Button>
+                        <Button type="submit" variant='primary' className='btn-custom' style={{
+                            width:'335px',
+                            height:'50px',
+                            fontSize:'23px',
+                            padding:'5px',
+                            background:'#F5B252',
+                            borderRadius:'20px'
+                        }}>Зарегистрироваться</Button>
                     </Form>
 
                     <Row className="py-3">
                         <Col>
                            Уже есть аккаунт?
-                    <Link
-                                to={`/login`}
-                            > Логин</Link>
+                    <Link to={`/login`} > <span style={{color:'#F5B252',textDecoration:'none'}}>Логин</span></Link>
                         </Col>
                     </Row>
                 </Col>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={4}>
                 <div className='content-register'>
                         <div>
                             <h3>Заполнение данных</h3>

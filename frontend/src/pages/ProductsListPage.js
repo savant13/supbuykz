@@ -8,6 +8,7 @@ import { useHistory,Link } from "react-router-dom";
 import { CREATE_PRODUCT_RESET ,CATEGORIES} from '../constants'
 import Button from 'react-bootstrap/Button';
 import CardBasket from '../components/Basket'
+import IMAGES from '../constants/images'
 
 
 
@@ -59,7 +60,8 @@ function ProductsListPage() {
                 <div id='all-category' onClick={()=>{
                     setCategoryTerm('')
                 }}>
-                    <h3>Все категории</h3>
+                    
+                    <h3><img src={IMAGES.categories} width={14} height={14}></img> Все категории</h3>
                 
                 </div>
                 <div className='categories'>
@@ -67,14 +69,19 @@ function ProductsListPage() {
                     return <p key={index}><a href='' onClick={(e)=>{
                         e.preventDefault()
                         setCategoryTerm(value)
-                    }}>&darr; {value}</a></p>
+                    }}><img src={IMAGES.category2} width={6} height={11}></img> {value}</a></p>
                 })}
                 </div>
                 
                 
                 </Col>
             
-                <Col  md ={8} lg={8}>
+                <Col  md ={8} lg={8} style={{
+                    boxShadow: "0px 2px 4px 0px #5A5B6A3D",
+                    boxShadow: "0px 1px 2px 0px #3A3A443D",
+                    borderRadius: "8px",
+                    
+                }}>
                 
                 <Row>
                     
