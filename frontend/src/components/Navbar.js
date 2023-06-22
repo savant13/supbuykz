@@ -8,6 +8,7 @@ import SearchBarForProducts from './SearchBarForProducts'
 import IMAGES from '../constants/images'
 
 
+
 function NavBar() {
 
     let history = useHistory()
@@ -24,70 +25,175 @@ function NavBar() {
         window.location.reload()
     }
 
-    return (
+    function NavBar2(){
+        return (
+        
         <header>
-            <Navbar  expand="lg" collapseOnSelect className='nvbar'>
-                <Container>
-                    <LinkContainer to="/">
-                        <Navbar.Brand> <img src={IMAGES.sup_buy_icon}/></Navbar.Brand>
-                    </LinkContainer>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-
-                            {/* All Products */}
-                            <LinkContainer to="/">
-                                <Nav.Link >Все продукты</Nav.Link>
-                            </LinkContainer>
-
-                          
-
-                        
-
-                                <span className="">
-                                    <SearchBarForProducts />
-                                </span>
-                            <div className="geo">
-                                <img src={IMAGES.geo_position} />
-                                Алматы
-                            </div>
+            <Navbar  expand="lg" collapseOnSelect className='nvbar' style={{
+                backgroundColor:'#F89F2199',
+                color:'white',
+                
+            }}>
+                    <Container>
+                        <LinkContainer to="/">
+                            <Navbar.Brand> <img src={IMAGES.sup_buy_icon} style={{
+                                borderRadius:'20px'
+                            }}/></Navbar.Brand>
+                        </LinkContainer>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="mr-auto">
+                                <div style={{
+                                    width:'40vw'
+                                }}>
+                                    
+                                </div>
+                                
+    
+                                
+    
+                              
+    
                             
+    
+            
+                                <div className="geo">
+                                    <img src={IMAGES.geo_position} />
+                                    Алматы
+                                </div>
+                                
+    
+                            </Nav>
+    
+                            {/* login-logout condition here */}
+    
+                            {userInfo ?
+                                <div>
+                                    <NavDropdown className="navbar-nav text-capitalize"  style={{
+                                            
+                                    }} title={userInfo.username} id='username'>
+                                        <LinkContainer to="/account">
+                                            <NavDropdown.Item>Профиль</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/all-addresses/">
+                                            <NavDropdown.Item>Настройки адреса</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/stripe-card-details/">
+                                            <NavDropdown.Item>Настройки карты</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/all-orders/">
+                                            <NavDropdown.Item>Все заказы</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <NavDropdown.Item onClick={logoutHandler}>
+                                        Выйти
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                </div>
+                                :
+    
+                                <LinkContainer to="/login">
+                                    <Nav.Link className='login-btn-mini'><i className="fas fa-user"></i> Login</Nav.Link>
+                                </LinkContainer>
+                            }
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
 
-                        </Nav>
 
-                        {/* login-logout condition here */}
 
-                        {userInfo ?
-                            <div>
-                                <NavDropdown className="navbar-nav text-capitalize" title={userInfo.username} id='username'>
-                                    <LinkContainer to="/account">
-                                        <NavDropdown.Item>Профиль</NavDropdown.Item>
-                                    </LinkContainer>
-                                    <LinkContainer to="/all-addresses/">
-                                        <NavDropdown.Item>Настройки адреса</NavDropdown.Item>
-                                    </LinkContainer>
-                                    <LinkContainer to="/stripe-card-details/">
-                                        <NavDropdown.Item>Настройки карты</NavDropdown.Item>
-                                    </LinkContainer>
-                                    <LinkContainer to="/all-orders/">
-                                        <NavDropdown.Item>Все заказы</NavDropdown.Item>
-                                    </LinkContainer>
-                                    <NavDropdown.Item onClick={logoutHandler}>
-                                    Выйти
-                                    </NavDropdown.Item>
-                                </NavDropdown>
-                            </div>
-                            :
+        </header>)
+    
+    }
+    
+    function NavBar1(){
+        return (
+            <header>
+                <Navbar  expand="lg" collapseOnSelect className='nvbar'>
+                    <Container>
+                        <LinkContainer to="/">
+                            <Navbar.Brand> <img src={IMAGES.sup_buy_icon}/></Navbar.Brand>
+                        </LinkContainer>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="mr-auto">
+    
+                                {/* All Products */}
+                                <LinkContainer to="/">
+                                    <Nav.Link >Все продукты</Nav.Link>
+                                </LinkContainer>
+    
+                              
+    
+                            
+    
+                                    <span className="">
+                                        <SearchBarForProducts />
+                                    </span>
+                                <div className="geo">
+                                    <img src={IMAGES.geo_position} />
+                                    Алматы
+                                </div>
+                                
+    
+                            </Nav>
+    
+                            {/* login-logout condition here */}
+    
+                            {userInfo ?
+                                <div>
+                                    <NavDropdown className="navbar-nav text-capitalize" title={userInfo.username} id='username'>
+                                        <LinkContainer to="/account">
+                                            <NavDropdown.Item>Профиль</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/all-addresses/">
+                                            <NavDropdown.Item>Настройки адреса</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/stripe-card-details/">
+                                            <NavDropdown.Item>Настройки карты</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <LinkContainer to="/all-orders/">
+                                            <NavDropdown.Item>Все заказы</NavDropdown.Item>
+                                        </LinkContainer>
+                                        <NavDropdown.Item onClick={logoutHandler}>
+                                        Выйти
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+                                </div>
+                                :
+    
+                                <LinkContainer to="/login">
+                                    <Nav.Link className='login-btn-mini'><i className="fas fa-user"></i> Login</Nav.Link>
+                                </LinkContainer>
+                            }
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </header>
+        )
+    
+    }
+    
 
-                            <LinkContainer to="/login">
-                                <Nav.Link className='login-btn-mini'><i className="fas fa-user"></i> Login</Nav.Link>
-                            </LinkContainer>
-                        }
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </header>
-    )
+
+
+    let path_name = window.location.pathname
+
+
+    switch (path_name) {
+        case '/':
+            
+            return <NavBar1/>
+            
+    
+        default:
+            return <NavBar2/>
+
+            break;
+    }
+    
+    
+
+    
 }
 
 export default NavBar

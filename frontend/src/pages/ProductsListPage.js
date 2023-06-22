@@ -108,7 +108,11 @@ function ProductsListPage() {
                 </Col>
                 <Col lg={2}>
                 <Link to="/new-product/">
-                    <button className='btn-custom' >{type_user=='Buyer'?"Оставит заявку":"Добавить свой товар"}</button>
+                    <button className='btn-custom' style={{
+                        fontSize:'20px',
+                        borderRadius:'20px',
+                        fontWeight:'700'
+                    }}>{type_user=='Buyer'?"Оставит заявку":"Добавить свой товар"}</button>
                 </Link>
                 <div className='basket'>
                     <h3>Корзина</h3>

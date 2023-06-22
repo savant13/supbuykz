@@ -112,10 +112,13 @@ const ProductCreatePage = () => {
                 }}>{userInfo.type_user!='Buyer'?"Добавить новый товар":'Заявка на покупку'}</h3>
                 
             
-            <Row className='add-product'>
+            <Row className='add-product' style={{
+                justifyContent:'center'
+            }}>
                     <Col style={{
                        
                         textAlign:'center',
+                        
                         
                     }} md={2}>
                     <div>

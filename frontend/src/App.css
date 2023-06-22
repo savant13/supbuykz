@@ -161,6 +161,10 @@ footer > .container > .row >.col>* {
   margin: 5px 0px;
   border-radius: 30px;
 }
+#username a{
+  color:'white'
+
+}
 /* FOOTER */
 
 
