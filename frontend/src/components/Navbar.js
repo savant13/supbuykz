@@ -179,17 +179,17 @@ function NavBar() {
     let path_name = window.location.pathname
 
 
-    switch (path_name) {
-        case '/':
+    // switch (path_name) {
+    //     case '/':
             
             return <NavBar1/>
             
     
-        default:
-            return <NavBar2/>
+        // default:
+        //     return <NavBar2/>
 
-            break;
-    }
+            
+    // }
     
     
 
