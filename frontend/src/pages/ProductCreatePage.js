@@ -49,6 +49,8 @@ const ProductCreatePage = () => {
         form_data.append('name', name)
         form_data.append('description', description)
         form_data.append('price', price)
+        form_data.append('owner',userInfo.id)
+        
         form_data.append('category',e.target[2].value)
         form_data.append('image', image)
         form_data.append("type_product",userInfo.type_user[0])
@@ -273,7 +275,7 @@ const ProductCreatePage = () => {
                     
                     </Col>
                     <Col>
-                    <Form.Group controlId='image'>
+                    <Form.Group >
                     <Form.Label htmlFor='img'>
                         <b>
                         Изображение
@@ -292,6 +294,7 @@ const ProductCreatePage = () => {
                     </Form.Label>
                     <Form.Control
                         id='img'
+                        autoFocus 
                         style={{
                             display:'none'
                             
@@ -323,9 +326,9 @@ const ProductCreatePage = () => {
                     <Form.Control
                         required
                         type="text"
-                        value={description}
+                        
                         placeholder=""
-                        onChange={(e) => setDescription(e.target.value)}
+                        
                     >
                     </Form.Control>
                 </Form.Group>

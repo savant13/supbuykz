@@ -32,7 +32,9 @@ class ProductCreateView(APIView):
     def post(self, request):
         user = request.user
         data = request.data
-        user = User.objects.get(data['owner'])
+
+        user = User.objects.filter(id=data['owner']).first()
+       
         product = {
             "name": data["name"],
             "description": data["description"],
