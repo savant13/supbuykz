@@ -68,7 +68,7 @@ function RegisterPage({ history, variant }) {
                                 required
                                 type="text"
                                 placeholder="ИИН/БИН"
-                                value={''}
+                                
                                 onChange={(e) => {}}
                             >
                             </Form.Control>
@@ -79,7 +79,7 @@ function RegisterPage({ history, variant }) {
                                 required
                                 type="text"
                                 placeholder="Полное имя"
-                                value={''}
+                                
                                 onChange={(e) => {}}
                             >
                             </Form.Control>
@@ -91,7 +91,7 @@ function RegisterPage({ history, variant }) {
                                 type="text"
                                 
                                 placeholder="Мобильный телефон"
-                                value={''}
+                                
                                 onChange={(e) => {}}
                             >
                             </Form.Control>
@@ -119,7 +119,7 @@ function RegisterPage({ history, variant }) {
                                 type="text"
                                 
                                 placeholder="Юридический адрес "
-                                value={''}
+                                
                                 onChange={(e) => {}}
                             >
                             </Form.Control>
