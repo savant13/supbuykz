@@ -9,7 +9,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     stock = models.BooleanField(default=False)
     image = models.ImageField(null=True, blank=True)
-    category = models.CharField(null=True,default=None,max_length=15)
+    category = models.CharField(null=True,default=None,max_length=40)
     type_product = models.CharField(max_length=10,default='B')
     owner = models.ForeignKey(User,on_delete=models.CASCADE,default=None,null=True)
 

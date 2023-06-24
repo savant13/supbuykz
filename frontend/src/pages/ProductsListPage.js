@@ -9,6 +9,7 @@ import { CREATE_PRODUCT_RESET ,CATEGORIES} from '../constants'
 import Button from 'react-bootstrap/Button';
 import CardBasket from '../components/Basket'
 import IMAGES from '../constants/images'
+import NavBar from '../components/Navbar'
 
 
 
@@ -46,6 +47,8 @@ function ProductsListPage() {
     
 
     return (
+        <div className='canvas'>
+            <NavBar/>
         <Row>
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <span style={{ display: "flex" }}>
@@ -94,7 +97,7 @@ function ProductsListPage() {
                         && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='')
                     )).length === 0 ? showNothingMessage() : (products.filter((item) =>
                     item.name.toLowerCase().includes(searchTerm !== "" ? searchTerm.split("=")[1] : "")
-                    && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='') && (item.type_product[0] != type_user[0] || type_user=='admin')
+                    && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='') && (item.type_product[0] != type_user[0] || type_user=='Admin')
                     )).map((product, idx) => (
                         <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
                             <div className="mx-2"> 
@@ -124,6 +127,7 @@ function ProductsListPage() {
                 </div>
                 </Col>
         </Row>
+        </div>
     )
 }
 

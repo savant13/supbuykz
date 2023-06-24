@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory,Link} from 'react-router-dom'
 
 
 function SearchBarForProducts() {
@@ -10,7 +10,10 @@ function SearchBarForProducts() {
     const onSubmit = (e) => {
         e.preventDefault();
         if(searchTerm) {
-            history.push(`/?searchTerm=${searchTerm}`)
+            
+            
+            
+            history.push(`/products/?searchTerm=${searchTerm.toLowerCase()}`)
         }
     };
 
@@ -28,11 +31,14 @@ function SearchBarForProducts() {
                         className="form-control search-input"
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
+                   
                     <button
                         type="submit"
                         className="hidden"
                     ><i className="fas fa-search"></i>
                     </button>
+                    
+                    
                 </span>
             </form>
         </div>

@@ -1,17 +1,16 @@
-import React from 'react'
+
+import IMAGES from "../constants/images";
+
 import { useDispatch, useSelector } from 'react-redux'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
 import { useHistory } from "react-router-dom";
 import SearchBarForProducts from './SearchBarForProducts'
-import IMAGES from '../constants/images'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 
-function NavBar() {
-
+function Navbar2() {
     let history = useHistory()
     const dispatch = useDispatch()
 
@@ -25,62 +24,47 @@ function NavBar() {
         history.push("/login")
         window.location.reload()
     }
-
-   
     
-    function NavBar1(){
-        return (
-            <header>
-                <Navbar  expand="lg" collapseOnSelect className='nvbar'>
-                    <Container>
+    return (
+        
+        <header>
+            <Navbar  expand="lg" collapseOnSelect className='nvbar' style={{
+                backgroundColor:'#F89F2199',
+                color:'white',
+                
+            }}>
+                    <Container style={
+                        {
+                            maxWidth:'75vw'
+                        }
+                    }>
                         <LinkContainer to="/">
-                            <Navbar.Brand> <img src={IMAGES.sup_buy_icon}/></Navbar.Brand>
+                            <Navbar.Brand> <img src={IMAGES.sup_buy_icon} style={{
+                                borderRadius:'20px'
+                            }}/></Navbar.Brand>
                         </LinkContainer>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
+                                <div style={{
+                                    width:'50vw'
+                                }}>
+                                    
+                                </div>
+                                
     
-                                {/* All Products */}
-                                <LinkContainer to="/products">
-                                    <Nav.Link >Все продукты</Nav.Link>
-                                </LinkContainer>
+                                
     
                               
     
                             
     
-                                    <span className="">
-                                        <SearchBarForProducts />
-                                    </span>
-                                <div style={{
-                                    width:'75px'
+            
+                                <div className="geo" style={{
+                                    fontSize:'20px'
                                 }}>
-
-                                </div>
-                                <div className="geo">
                                     <img src={IMAGES.geo_position} />
                                     Алматы
-                                </div>
-                                <div style={{
-                                    width:'20px'
-                                }}>
-
-                                </div>
-                                <div className="" style={{
-                                    maxHeight:'40px'
-                                    
-                                }}>
-                                    <Link to='/basket/'>
-                                    <img src={IMAGES.basket2} style={{
-                                        height:'34px',
-                                        width:'34px',
-                                        position:'relative',
-                                        top:'-4px'
-                                    }}/>
-
-
-                                    </Link>
-                                    
                                 </div>
                                 
     
@@ -90,7 +74,9 @@ function NavBar() {
     
                             {userInfo ?
                                 <div>
-                                    <NavDropdown className="navbar-nav text-capitalize" title={userInfo.username} id='username'>
+                                    <NavDropdown className="navbar-nav text-capitalize"  style={{
+                                            
+                                    }} title={userInfo.username} id='username'>
                                         <LinkContainer to="/account">
                                             <NavDropdown.Item>Профиль</NavDropdown.Item>
                                         </LinkContainer>
@@ -117,32 +103,11 @@ function NavBar() {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-            </header>
-        )
-    
-    }
-    
 
 
 
-    let path_name = window.location.pathname
-
-
-    // switch (path_name) {
-    //     case '/':
-            
-            return <NavBar1/>
-            
-    
-        // default:
-        //     return <NavBar2/>
-
-            
-    // }
-    
+        </header>)
     
 
-    
 }
-
-export default NavBar
+export default Navbar2;

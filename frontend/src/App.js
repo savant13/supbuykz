@@ -22,6 +22,8 @@ import './App.css';
 import Footer from './components/Footer'
 import AllCheckoutPage from './pages/AllCheckoutPage'
 import AgreementPage from './pages/AgreementPage'
+import MainPage from './pages/MainPage'
+import FAQPage from './pages/FAQPage'
 
 
 const App = () => {
@@ -29,10 +31,11 @@ const App = () => {
   return (
     <div>
       <Router>
-        <NavBar />
+        
         <div className="container main-container">
           <Switch>
-            <Route path="/" component={ProductListPage} exact />
+            <Route path="/" component={MainPage} exact />
+            <Route path="/products" component={ProductListPage} exact />
             <Route path="/new-product/" component={ProductCreatePage} exact />
             <Route path="/product/:id/" component={ProductDetailsPage} exact />
             <Route path="/product-update/:id/" component={ProductUpdatePage} exact />
@@ -50,6 +53,7 @@ const App = () => {
             <Route path="/all-addresses/" component={AllAddressesOfUserPage} exact />
             <Route path="/all-addresses/:id/" component={AddressUpdatePage} exact />
             <Route path="/all-orders/" component={OrdersListPage} exact />
+            <Route path="/faq" component={FAQPage} exact />
             <Route path="" component={NotFound} exact />
           </Switch>
         </div>

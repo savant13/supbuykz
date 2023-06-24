@@ -5,6 +5,8 @@ import Message from '../components/Message'
 import { Spinner, Row, Col, Container, Card, Button, Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { CREATE_PRODUCT_RESET, DELETE_PRODUCT_RESET, UPDATE_PRODUCT_RESET, CARD_CREATE_RESET } from '../constants'
+import NavBar from '../components/Navbar'
+import IMAGES from '../constants/images'
 
 
 function ProductDetailsPage({ history, match }) {
@@ -58,6 +60,10 @@ function ProductDetailsPage({ history, match }) {
 
     return (
         <div>
+            <NavBar></NavBar>
+            <div style={{
+                height:'50px'
+            }}></div>
 
             {/* Modal Start*/}
             <div>
@@ -94,8 +100,46 @@ function ProductDetailsPage({ history, match }) {
                 <div>
                     <Container>
                         <Row>
-                            <Col md={6}>
-                                <Card.Img variant="top" src={product.image} height="411px" width="400px"/>
+                            <div style={{
+                                fontSize:'20px',
+                                fontWeight:'bold'
+
+                            }}>
+                                {product.category}&#10148;
+
+                            </div>
+                            
+                        </Row>
+                        <div style={{
+                            height:'25px'
+                        }}></div>
+                        <Row>
+                            <h1>
+                                {product.name}
+                                
+                            </h1>
+                        </Row>
+                        <div style={{
+                            height:'25px'
+                        }}></div>
+                        
+                        <Row>
+                            <Col md={4}>
+                                <div style={{
+                                    textAlign:'center',
+                                    boxShadow: "0px 2px 4px 0px #5A5B6A3D",
+                                    boxShadow: "0px 1px 2px 0px #3A3A443D",
+                                    borderRadius:'10px',
+
+
+                                }}>
+                                    <img src={product.image} height="231px" width="205px"/>
+                                    
+                                    
+                                </div>
+                                <div style={{
+                            height:'25px'
+                        }}></div>
 
                                 {/* Product edit and delete conditions */}
 
@@ -118,36 +162,57 @@ function ProductDetailsPage({ history, match }) {
                                     : ""}
                             </Col>
 
-                            <Col sm>
+                            <Col >
                                 <div style={{
                                     display: "flex",
                                     justifyContent: "center",
                                     border: "1px solid",
-                                    borderRadius:"4px",
+                                    borderRadius:"10px",
                                     color:"#F89F21",
                                     borderColor: "#F89F21",
-                                    padding: "2px",
+                                    padding: "10px 15px",
                                     alignItems:'center'
                                 }}>
-                                    <div className="col"><b>{product.price} тг</b></div>
+                                    <div className="col" style={{
+                                        fontWeight:'900',
+                                        fontSize:'26px'
+
+                                    }}>{product.price} тг</div>
                                     <div className='col'>
-                                    {product.stock ?
-                                    <Link to={`${product.id}/checkout/`}>
-                                        <button className="btn1">
+                                    
+                                    <Link to={`/basket/`}>
+                                        <button className="btn1" style={{
+                                            width:'261px'
+                                        }} onClick={
+                                            (e)=>{
+                                                
+                                                let basket = {
+                                                    'pr.id':{
+                                                        name:product.name,
+                                                        price:product.price,
+                                                        count:1,
+                                                        image:product.image
+                                                    }
+                                                }
+                                                localStorage.setItem('basket',JSON.stringify(basket))
+                                            }
+                                        }>
+                                            <img src={IMAGES.basket2}>
+                                            </img>
+                                            
                                             <span style={{
-                                                fontSize:"20px",
-                                                fontWeight:"700",
+                                                marginLeft:'30px',
+                                                fontSize:"22px",
+                                                fontWeight:"900",
                                             }}>В корзину</span>
                                         </button>
                                     </Link>
-                                    :
-                                    <Message variant='danger'>
-                                        Out Of Stock!
-                                    </Message>}
+                                   
 
                                     </div>
                                     
                                 </div>
+                                <div style={{height:'20px'}}></div>
                                 <h5>Страна-производитель: Казахстан</h5>
                                 <h5>Бренд: {product.name}</h5>
                                 

@@ -1,6 +1,6 @@
 import { Container,Row,Col } from "react-bootstrap";
 import IMAGES from "../constants/images";
-
+import NavBar from '../components/Navbar.js'
 
 function onSubmit(e){
     e.preventDefault()
@@ -16,9 +16,17 @@ const AgreementPage = ()=>{
     for (const key in basket) {
         total_price += basket[key].price * basket[key].count
     }
-    return <Container style={{
+    return (
+    <div>
+        <NavBar></NavBar>
+        <div style={{
+            height:'50px'
+        }}></div>
+    <Container style={{
+        
         
     }}>
+        
         <form onSubmit={onSubmit}>
 
         
@@ -170,6 +178,7 @@ const AgreementPage = ()=>{
 
 
     </Container>
+    </div>)
     
 
 

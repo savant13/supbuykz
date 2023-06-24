@@ -28,8 +28,7 @@ function RegisterPage({ history, variant }) {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log(e.target.typeUser.value)
-        console.log(e.target.licenze.value)
+        
         if (password !== confirmPassword) {
             setMessage('Passwords do not match!')
         } else {

@@ -11,6 +11,7 @@ import { savedCardsList } from '../actions/cardActions'
 import UserAddressComponent from '../components/UserAddressComponent'
 import { checkTokenValidation, logout } from '../actions/userActions'
 import {CHARGE_CARD_RESET} from '../constants/index'
+import Navbar from '../components/Navbar'
 
 
 
@@ -78,13 +79,35 @@ const AllCheckoutPage = ({ match}) => {
         history.push("/login")
         window.location.reload()
       }
-    const [sum,setSum] = useState(0)
     const b1 = JSON.parse(localStorage.getItem('basket'))
     const [basket,setBasket] = useState(b1)
-    const [countProduct,setCountProduct] = useState(Object.keys(basket).length)
 
+    
+    
+    let array = (Object.values(basket?Object.values(basket):[]))
+    let res =() => {
+        let res = 0;
+        let count = 0;
+        
+        for (let index = 0; index < array.length; index++) {
+            res+=array[index].count * array[index].price
+            count+=array[index].count
+            
+            
+        }
+        
+        return {
+            sum:res,
+            count:count
+        }
+    }
+    let result = res()
 
+    
+    
     return (
+        <div>
+            <Navbar/>
         <div>
             {cardCreationError ? <Message variant='danger'>{cardCreationError}</Message> : ""}
             {loading
@@ -104,21 +127,43 @@ const AllCheckoutPage = ({ match}) => {
                 </span> : ""}
             {error ? <Message variant='danger'>{error}</Message> :
                 <Container>
+                    <div style={{
+                        height:'20px'
+                    }}></div>
                     <Row style={{
                         
                         
 
                     }}>
-                        <Col xs={9}>
-                            <h3>Checkout Summary</h3>
+                        <Col xs={8}>
+                            <Row>
+                                <Col md={8} style={{
+                                    fontSize:'25px'
+                                }}> Корзина: {array.length}</Col>
+                                <Col md={3}> <button style={{
+                                    color:"#3A3A44",
+                                    opacity:"40%",
+                                    border:"none",
+                                    background:'white',
+
+                                }} onClick={(e)=>{
+                                    e.preventDefault()
+                                    setBasket({})
+                                    localStorage.removeItem('basket')
+                                }}>  Очистить корзину </button></Col>
+                                
+                                </Row>
+                            <div style={{
+                                height:'50px'
+                            }}></div>
                             
 
-                                        {Object.values(basket).map((value,index)=>{
+                                        {array.map((value,index)=>{
                                             const pr_id = Object.keys(basket)[index]
                                             let total_price = basket[pr_id].count * value.price
 
                                             return (
-                                           
+                                                <div key={index}>
                                                 <Row>
                                                     <Col >
                                                     <div className='image-prd'>
@@ -141,9 +186,7 @@ const AllCheckoutPage = ({ match}) => {
                                         }
                                         new_basket[pr_id].count = new_basket[pr_id].count -1
                                         setBasket(new_basket)
-                                        setCountProduct(countProduct-1)
                                         total_price = basket[pr_id].count * value.price
-                                        setSum(sum + total_price)
                                         
                                         
                                         
@@ -159,9 +202,7 @@ const AllCheckoutPage = ({ match}) => {
                                         }
                                         new_basket[pr_id].count = new_basket[pr_id].count + 1
                                         setBasket(new_basket)
-                                        setCountProduct(countProduct + 1)
                                         total_price = basket[pr_id].count * value.price
-                                        setSum(sum + total_price)
                                         
                                     
                                         
@@ -183,7 +224,7 @@ const AllCheckoutPage = ({ match}) => {
                                             let new_basket = copyMap(basket)
                                             delete new_basket[pr_id]
                                             setBasket(new_basket)
-                                            setCountProduct(countProduct-1)
+                                            
                                             
                                         }}>
                                                  X
@@ -196,8 +237,14 @@ const AllCheckoutPage = ({ match}) => {
                                         </div>
                                        
                                     </Col>
+                                    
 
                                     </Row>
+
+                                <div style={{
+                                    height:'25px'
+                                }}></div>
+                                </div>
                                    
                                 
                                 
@@ -205,18 +252,7 @@ const AllCheckoutPage = ({ match}) => {
 
                             })}
                             
-                            {/* <Row>
-                            <span style={{ display: "flex" }}>
-                                <h3>Billing Address</h3>
-                                <Link
-                                    className="ml-2 mt-2"
-                                    to="/all-addresses/"
-                                >
-                                    Edit/Add Address
-                                </Link>
-                            </span>
-
-                            </Row> */}
+                            
                             
 
                             
@@ -224,24 +260,86 @@ const AllCheckoutPage = ({ match}) => {
                         </Col>
 
 
-                        <Col xs={3}>
-                            <h3>
-                                Payments Section
-                            </h3>
-                            {success ?
-                                <ChargeCardComponent
-                                    selectedAddressId={selectedAddressId}
-                                    addressSelected={addressSelected}
-                                    product={product}
-                                />
-                                :
-                                <CreateCardComponent
-                                    addressSelected={addressSelected}
-                                    stripeCards={stripeCards} />}
+                        <Col xs={4}>
+                            
+                                
+                                <div className='orders'>
+                                <div style={{
+                                    fontFamily: "Quicksand",
+                                    fontSize: "30px",
+                                    fontWeight: "700",
+                                    lineHeight: "24px",
+                                    letterSpacing:" 0.0075em",
+                                    textAlign: "center",
+                                    
+                                }}>Ваш заказ</div>
+                                <div style={{
+                                    height:'40px'
+                                }}></div>
+                                {array.map((value,index)=>{
+                                        let total_price = value.count * value.price
+                                        return (
+                                        <Row style={{
+                                            justifyContent:''
+                                        }} key={index}>
+                                            <Col md={7}>{value.name}</Col>
+                                            <Col md={5}><b>{total_price}</b> тг</Col>
+
+                                        </Row>)
+                                    })}
+
+                                <hr></hr>
+                                <Row>
+                                    <Col style={{
+                                        fontFamily: "Quicksand",
+                                        fontSize: "18px",
+                                        fontWeight: "700",
+                                        
+                                        letterSpacing: "0.0075em",
+                                        textAlign: "center",
+                                        
+                                    }} md={8}>Итоговая сумма</Col>
+                                    <Col md={4}> {result.sum} тг</Col>
+                                </Row>
+                                <div style={{
+                                    height:'20px'
+                                }}></div>
+                                <Row style={{
+                                    justifyContent:'center'
+                                }}>
+                                    <Col md={8}>
+                                    <Link to='/agreement/'>
+                                    <button style={{
+                                        fontSize: "16px",
+                                        fontWeight: "500",
+                                        fontStyle:'Bold',
+                                        borderRadius:'10px',
+                                        textAlign: "center",
+                                        border: "1px solid #F89F21",
+                                        background: "linear-gradient(0deg, #F5B252, #F5B252), linear-gradient(0deg, #F89F21, #F89F21)",
+                                        color:'white',
+
+
+                                        
+
+                                    }}>Перейти к оформленю</button>
+                                    </Link>
+                                    
+                                    </Col>
+                                    
+                                    
+                                </Row>
+                                    
+                                </div>
+                                    
+                                
+                                
+                            
                         </Col>
                     </Row>
                 </Container>
             }
+        </div>
         </div>
     )
 }

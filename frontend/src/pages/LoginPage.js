@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { login } from '../actions/userActions'
 import Message from '../components/Message';
+import Navbar2 from '../components/Navbar2'
 
 
 function LoginPage({ history }) {
@@ -18,7 +19,7 @@ function LoginPage({ history }) {
 
     useEffect(() => {
         if (userInfo) {
-            history.push('/') // homepage
+            history.push('/products') // homepage
         }
     }, [history, userInfo])
 
@@ -28,9 +29,11 @@ function LoginPage({ history }) {
     }
 
     return (
+        <div>
+            <Navbar2/>
         <div className='login-container'>
             <Row className='justify-content-md-center '>
-                <Col xs={12} md={6} lg={4}>                    
+                <Col xs={12} md={3} >                    
                     <h3>Supbuy.kz - Вход</h3>                    
                     {error && <Message variant='danger'>{error}</Message>}
                     <Form onSubmit={submitHandler} className='login-form'>
@@ -58,7 +61,9 @@ function LoginPage({ history }) {
                             </Form.Control>
                         </Form.Group>
 
-                        <Button type="submit" variant='primary'>Вход</Button>
+                        <Button style={{
+                            
+                        }} type="submit" variant='primary'>Вход</Button>
                     </Form>
 
                     <Row className="py-3">
@@ -71,6 +76,7 @@ function LoginPage({ history }) {
                     </Row>
                 </Col>
             </Row>
+        </div>
         </div>
 
     )

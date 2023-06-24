@@ -15,18 +15,41 @@ function copyMap(element){
 }
 
 function CardBasket({basket,setBasket}){
-    const [sum,setSum] = useState(0)
+    let array = Object.values(basket)
     
-    const [countProduct,setCountProduct] = useState(Object.keys(basket).length)
+
+    let res =() => {
+        let res = 0;
+        let count = 0;
+        
+        for (let index = 0; index < array.length; index++) {
+            res+=array[index].count * array[index].price
+            count+=array[index].count
+            
+            
+        }
+        
+        return {
+            sum:res,
+            count:count
+        }
+    }
+    let result = res()
+    
+
     
     const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    
     // setCountProduct(Object.keys(basket).length)
-
+    const jsoned = JSON.stringify(basket)
+    localStorage.setItem('basket',jsoned)
+    
     return (
         <div className=''>
        {Object.values(basket).map((value,index)=>{
             const pr_id = Object.keys(basket)[index]
             let total_price = basket[pr_id].count * value.price
+            
             
             return ( 
             <div key={index}>
@@ -37,7 +60,7 @@ function CardBasket({basket,setBasket}){
                     let new_basket = copyMap(basket)
                     delete new_basket[pr_id]
                     setBasket(new_basket)
-                    setCountProduct(countProduct-1)
+                    
                     
                 }}>X</div>
 
@@ -53,10 +76,13 @@ function CardBasket({basket,setBasket}){
                                 new_basket[key] = basket[key]
                             }
                             new_basket[pr_id].count = new_basket[pr_id].count -1
+                            if (new_basket[pr_id].count ==0){
+                                delete new_basket[pr_id]
+                            }
                             setBasket(new_basket)
-                            setCountProduct(countProduct-1)
+                            
                             total_price = basket[pr_id].count * value.price
-                            setSum(sum + total_price)
+                            
                             
                             
                             
@@ -72,9 +98,9 @@ function CardBasket({basket,setBasket}){
                             }
                             new_basket[pr_id].count = new_basket[pr_id].count + 1
                             setBasket(new_basket)
-                            setCountProduct(countProduct + 1)
+                            
                             total_price = basket[pr_id].count * value.price
-                            setSum(sum + total_price)
+                            
                             
                            
                             
@@ -106,8 +132,8 @@ function CardBasket({basket,setBasket}){
             <div className='col-4'>Бесплатно</div>
         </div>
         <div className='row'>
-            <div className='col-8'>Итого {countProduct} товаров</div>
-            <div className='col-4'>{sum} тг </div>
+            <div className='col-8'>Итого {result.count} товаров</div>
+            <div className='col-4'>{result.sum} тг </div>
         
         
 
@@ -117,8 +143,7 @@ function CardBasket({basket,setBasket}){
             <button className='btn2' onClick={(e)=>{
                 setBasket({})
                 localStorage.removeItem('basket')
-                setCountProduct(0)
-                setSum(0)
+                
             }}>
             Очистить корзину 
             </button>

@@ -7,6 +7,8 @@ import { userDetails, logout, checkTokenValidation } from '../actions/userAction
 import Message from '../components/Message'
 import { Spinner } from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'
+import NavBar from '../components/Navbar'
+import IMAGES from '../constants/images'
 
 
 function AccountPage() {
@@ -56,41 +58,30 @@ function AccountPage() {
         try {
 
             return (
-                // <div>
-                //     {loading && <span style = {{ display: "flex" }}><h5>Getting User Information</h5><span className = "ml-2"><Spinner animation="border" /></span></span>}
-                //     <Container>
-                //         <Row className="mr-6 mb-2 border border-dark">
-                //             <Col xs={2} className="p-3 bg-info text-white">Name:</Col>
-                //             <Col className="p-3">{userAccDetails.username}</Col>
-                //         </Row>
-                //         <Row className="mb-2 border border-dark">
-                //             <Col xs={2} className="p-3 bg-info text-white">Email:</Col>
-                //             <Col className="p-3">{userAccDetails.email}</Col>
-                //         </Row>
-                //         <Row className="mb-2 border border-dark">
-                //             <Col xs={2} className="p-3 bg-info text-white">Admin Privileges:</Col>
-                //             <Col className="p-3">{userAccDetails.admin ? "Yes" : "No"}</Col>
-                //         </Row>
-                //     </Container>
-                //     <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                //         <Link to={`/account/update`}>Update Account details</Link>
-                //         <span className="ml-1 text-primary">| </span>
-                //         <span className="ml-1"></span>
+                <div>
 
-                //         <Link to={`/account/delete/`}>Delete Account</Link>
-                //     </span>
-                // </div>
+                    <NavBar></NavBar>
+                    <div style={{
+                                    height:'50px'
+                                }}>
+
+                                </div>
+                
                 <div className='container profile-container'>
                     <Row>
+                    <h3>Личный кабинет</h3>
+                    </Row>
+                    <Row>
+                        
                         <Col>
-                        <Card className="mb-2 rounded avatar">
+                        <Card className="mb-2  avatar">
                             <Card.Body>
-                                <Card.Img></Card.Img>
+                                <Card.Img src={IMAGES.avatar}  height={120}></Card.Img>
                                 <Card.Title>
                                 Фото профиля
                                 </Card.Title>
                                 <Card.Subtitle>
-                                “тип аккаунта”
+                                {userInfo.type_user}
                                 </Card.Subtitle>
 
                             </Card.Body>
@@ -132,8 +123,33 @@ function AccountPage() {
 
                             <Link to={`/account/delete/`}>Delete Account</Link>
                      </span>                            
+                            <div style={{
+                                    height:'50px'
+                                }}>
 
+                                </div>
+                            <Row>
+                                <div style={{
+                                    width:'200px'
+                                }}>
 
+                                </div>
+                                <div style={{
+                                    border:'1px solid #F89F21',
+                                    borderRadius:'10px',
+                                    padding:'5px 15px'
+                                    
+                                }}>
+                                    <span style={{
+                                        fontWeight:'bold',
+                                        fontFamily:'Inter',
+                                        fontSize:'20px'
+                                    }}>Партнёр</span>
+                                    <img src={IMAGES.sup_buy_icon} width={157} height={67} style={{
+                                        borderRadius:'10px'
+                                    }}></img>
+                                </div>
+                            </Row>
                             </Card.Body>
 
 
@@ -144,6 +160,7 @@ function AccountPage() {
                         </Col>
                     </Row>
 
+                </div>
                 </div>
             )
         } catch (error) {

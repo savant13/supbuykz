@@ -5,8 +5,8 @@ import { createProduct } from '../actions/productActions'
 import { useHistory } from 'react-router'
 import { checkTokenValidation, logout } from '../actions/userActions'
 import { CREATE_PRODUCT_RESET } from '../constants'
-import Message from '../components/Message';
 import IMAGES from '../constants/images'
+import NavBar from '../components/Navbar.js'
 
 
 
@@ -105,8 +105,11 @@ const ProductCreatePage = () => {
 
     return (
         <div>
-            {/* {productCreationError && <Message variant='danger'>{productCreationError.image[0]}</Message>} */}
-
+        <NavBar/>
+        <div>
+            
+            
+            
                 <h3 style={{
                     color:'#F89F21',
                     textAlign:'center',
@@ -398,6 +401,7 @@ const ProductCreatePage = () => {
                 </Button>
             </Form>
             </div>
+        </div>
         </div>
     )
 }

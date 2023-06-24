@@ -1,6 +1,5 @@
 import IMAGES from "../constants/images";
-
-
+import {Link} from "react-router-dom";
 
 function Footer(){
     return(
@@ -16,16 +15,23 @@ function Footer(){
                     </div>
                     <div  className="col">
                         <button className="orange-button ftr-btn">Для поставщиков</button>
+                        <Link to='/faq'>
                         <button className="orange-button faq-btn ftr-btn">FAQ</button>
+
+                        </Link>
 
                     </div>
                     <div  className="col">
-                        <img src={IMAGES.tel_icon}/>
+                        <img src={IMAGES.tel} style={{
+                            marginRight:'10px'
+                        }}/>
                         
                                             +7 (700) 989 01 01
                     </div>
                     <div  className="col">
-                        <img src={IMAGES.email_icon}/>supbuystaff@gmai.com
+                        <img src={IMAGES.email} style={{
+                            marginRight:'10px'
+                        }}/>supbuystaff@gmai.com
                     </div>
                 </div>
 

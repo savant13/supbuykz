@@ -18,6 +18,13 @@ import zaiavka from '../images/zaiavka.png'
 import document_docx from '../data/Образец_договора_поставки_товара_заключаемого_между_юридическими.docx'
 import categories from '../images/category.png'
 import category2 from '../images/category2.png'
+import roadmap1 from '../images/road_map1.png';
+import roadmap2 from '../images/road_map2.png';
+import add_person from '../images/add_person.png'
+import email from '../images/email.png'
+import tel from '../images/tel.png'
+import basket2  from '../images/basket2.png'
+import avatar from '../images/avatar.png'
 
 const IMAGES = {
     document_pdf:document_docx,
@@ -43,6 +50,13 @@ const IMAGES = {
     zaiavka:zaiavka,
     categories:categories,
     category2:category2,
+    roadmap1:roadmap1,
+    roadmap2:roadmap2,
+    tel:tel,
+    email:email,
+    add_person:add_person,
+    basket2:basket2,
+    avatar:avatar,
 
 
 
