@@ -6,7 +6,7 @@ import { Spinner } from 'react-bootstrap'
 import { UPDATE_STRIPE_CARD_RESET } from '../constants'
 import { checkTokenValidation, logout } from '../actions/userActions'
 import { useHistory } from 'react-router-dom'   
-
+import NavBar from '../components/Navbar'
 
 const CardUpdatePage = () => {
 
@@ -94,6 +94,8 @@ const CardUpdatePage = () => {
     }
 
     return (
+        <div>
+            <NavBar/>
         <div>
             <Row className='justify-content-md-center'>
                 <Col xs={12} md={6}>
@@ -231,6 +233,7 @@ const CardUpdatePage = () => {
                     ))}
                 </Col>
             </Row>
+        </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import { Spinner } from 'react-bootstrap'
 import Message from "../components/Message"
 import DeleteCardComponent from '../components/DeleteCardComponent'
 import { useHistory } from 'react-router-dom'
+import NavBar from '../components/Navbar'
 
 
 const CardDetailsPage = () => {
@@ -65,6 +66,8 @@ const CardDetailsPage = () => {
     }
 
     return (
+        <div>
+            <NavBar/>
         <div>
             {loading && <span style={{ display: "flex" }}>
                 <h5>Getting Card Information</h5>
@@ -142,6 +145,7 @@ const CardDetailsPage = () => {
                     <Message variant='info'>Card details not available.</Message>
                 </div>
             }
+        </div>
         </div>
     )
 }

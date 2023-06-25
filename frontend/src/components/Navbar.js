@@ -103,6 +103,9 @@ function NavBar() {
                                         <LinkContainer to="/all-orders/">
                                             <NavDropdown.Item>Все заказы</NavDropdown.Item>
                                         </LinkContainer>
+                                        <LinkContainer to="/contacts/">
+                                            <NavDropdown.Item>Контакты клиентов</NavDropdown.Item>
+                                        </LinkContainer>
                                         <NavDropdown.Item onClick={logoutHandler}>
                                         Выйти
                                         </NavDropdown.Item>

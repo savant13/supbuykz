@@ -287,6 +287,9 @@ class OrdersListView(APIView):
             serializer = AllOrdersListSerializer(all_orders, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+        
+        
 # change order delivered status
 class ChangeOrderStatus(APIView):
 

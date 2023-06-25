@@ -24,6 +24,7 @@ import AllCheckoutPage from './pages/AllCheckoutPage'
 import AgreementPage from './pages/AgreementPage'
 import MainPage from './pages/MainPage'
 import FAQPage from './pages/FAQPage'
+import ContactsPage from './pages/Contacts'
 
 
 const App = () => {
@@ -54,6 +55,9 @@ const App = () => {
             <Route path="/all-addresses/:id/" component={AddressUpdatePage} exact />
             <Route path="/all-orders/" component={OrdersListPage} exact />
             <Route path="/faq" component={FAQPage} exact />
+            <Route path="/contacts" component={ContactsPage} exact />
+
+
             <Route path="" component={NotFound} exact />
           </Switch>
         </div>

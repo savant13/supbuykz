@@ -5,6 +5,7 @@ import { deleteUserAddress, getAllAddress, checkTokenValidation, logout } from '
 import { DELETE_USER_ADDRESS_RESET, GET_SINGLE_ADDRESS_RESET } from '../constants'
 import { useHistory } from 'react-router-dom'
 import CreateAddressComponent from '../components/CreateAddressComponent'
+import NavBar from '../components/Navbar'
 
 
 function AllAddressesOfUserPage() {
@@ -85,6 +86,7 @@ function AllAddressesOfUserPage() {
 
     return (
         <div>
+            <NavBar/>
 
             {/* Modal Start*/}
             <div>

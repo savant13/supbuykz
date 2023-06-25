@@ -8,6 +8,7 @@ import { changeDeliveryStatus } from '../actions/productActions'
 import { CHANGE_DELIVERY_STATUS_RESET } from '../constants'
 import SearchBarForOrdersPage from '../components/SearchBarForOrdersPage'
 import Message from '../components/Message'
+import NavBar from '../components/Navbar'
 
 
 function OrdersListPage() {
@@ -77,6 +78,9 @@ function OrdersListPage() {
 
 
     return (
+        <div>
+            <NavBar/>
+            <div style={{height:'50px'}}></div>
         <div>
             {loadingOrders && <span style={{ display: "flex" }}>
                 <h5>Getting Orders</h5>
@@ -175,6 +179,7 @@ function OrdersListPage() {
                     ))}
                 </Table>
                 : <Message variant="info">No orders yet.</Message> }
+        </div>
         </div>
     )
 }
