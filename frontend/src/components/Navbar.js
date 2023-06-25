@@ -59,7 +59,7 @@ function NavBar() {
                                 </div>
                                 <div className="geo">
                                     <img src={IMAGES.geo_position} />
-                                    Алматы
+                                    Almaty
                                 </div>
                                 <div style={{
                                     width:'20px'

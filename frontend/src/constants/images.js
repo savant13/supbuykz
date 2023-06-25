@@ -25,9 +25,17 @@ import tel from '../images/tel.png'
 import basket2  from '../images/korzina.jpg'
 import avatar from '../images/avatar.png'
 import done_agreement from '../images/done_agreement.png'
+import sup_buy1 from '../images/sup_buy_icon1.png'
+import sup_buy2 from '../images/sup_buy_icon2.png'
+
+
+
 const IMAGES = {
     
     sup_buy_icon:sup_buy,
+    sup_buy_icon1:sup_buy1,
+    sup_buy_icon2:sup_buy2,
+
     geo_position:geo_position,
     custumer_icon:custumer_icon,
     tel_icon:require('../images/image 3.png'),

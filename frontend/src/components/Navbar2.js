@@ -39,7 +39,7 @@ function Navbar2() {
                         }
                     }>
                         <LinkContainer to="/">
-                            <Navbar.Brand> <img src={IMAGES.sup_buy_icon} style={{
+                            <Navbar.Brand> <img src={IMAGES.sup_buy_icon2} style={{
                                 borderRadius:'20px'
                             }}/></Navbar.Brand>
                         </LinkContainer>
