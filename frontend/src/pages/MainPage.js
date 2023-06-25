@@ -20,7 +20,7 @@ function MainPage(params) {
         </div>
         <div style={
             {
-                height:'300px'
+                height:'200px'
             }
         }></div>
         

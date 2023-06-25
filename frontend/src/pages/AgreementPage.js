@@ -249,7 +249,7 @@ const AgreementPage = ()=>{
             <div style={{
                 height:'50px'
             }}></div>
-            <Link to='/products'>
+            <Link to='/contacts'>
                 <button className="btn1" style={{
                     background:'#F27623',
                     

@@ -12,7 +12,7 @@ class Product(models.Model):
     category = models.CharField(null=True,default=None,max_length=40)
     type_product = models.CharField(max_length=10,default='B')
     owner = models.ForeignKey(User,on_delete=models.CASCADE,default=None,null=True)
-
+    count = models.IntegerField(default=1)
     def __str__(self):
         return self.name
     

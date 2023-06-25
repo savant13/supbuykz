@@ -1,5 +1,6 @@
-import { Card } from 'react-bootstrap'
+import { Row, Col, Form, Button, Card  } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
 
 import React from 'react'
 
@@ -18,9 +19,32 @@ function Product({ product ,basket,setBasket}) {
                         </Card.Title>
                     </Link>
 
-                    <Card.Text as="h3">
-                         {product.price} тг
-                    </Card.Text>
+                    <Card.Body >
+                         <Row style={{
+                            justifyContent:'space-between'
+                         }}>
+                            <Col md={8} style={{
+                                fontSize:'16px',
+                                padding:'0px'
+                            }}>
+                            {product.price} тг
+                            
+                            </Col>
+                            <Col md={4} style={{
+                                color:'#F89F21',
+                                fontFamily:'Inter',
+                                fontWeight:'700',
+                                fontSize:'14px',
+                                padding:'0px'
+                            }}>
+                            {product.count} шт
+
+                            </Col>
+                        
+
+                         </Row>
+                         
+                    </Card.Body>
                     <Card.Footer>
                         <button className='btn-product' onClick={(e)=>{
                             e.preventDefault()

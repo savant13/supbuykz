@@ -43,7 +43,8 @@ class ProductCreateView(APIView):
             "image": data["image"],
             "category":data['category'],
             "type_product":data['type_product'],
-            "owner":user
+            "owner":user,
+            "count":data['count']
         }
 
 

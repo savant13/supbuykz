@@ -20,6 +20,7 @@ const ProductCreatePage = () => {
     const [price, setPrice] = useState("")
     const [stock, setStock] = useState(false)
     const [image, setImage] = useState(null)
+    const [count, setCount] = useState(1)
 
     // login reducer
     const userLoginReducer = useSelector(state => state.userLoginReducer)
@@ -51,7 +52,7 @@ const ProductCreatePage = () => {
         form_data.append('description', description)
         form_data.append('price', price)
         form_data.append('owner',userInfo.id)
-        
+        form_data.append('count',count)
         form_data.append('category',e.target[2].value)
         form_data.append('image', image)
         form_data.append("type_product",type_user)
@@ -321,6 +322,8 @@ const ProductCreatePage = () => {
 
                 <Row>
                     <Col md={4}>
+
+                        
                 <Form.Group controlId='count'>
                     <Form.Label>
                         <b>
@@ -330,12 +333,15 @@ const ProductCreatePage = () => {
                     <Form.Control
                         required
                         type="text"
-                        
+                        value={count}
                         placeholder=""
+                        onChange={(e)=>{setCount(e.target.value)}}
                         
                     >
                     </Form.Control>
                 </Form.Group>
+
+
                 </Col>
 
                 <Col md={4}>

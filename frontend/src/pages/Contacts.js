@@ -85,11 +85,11 @@ function ContactsPage(){
                             </Row>
                             <Row>
                                 <Col>
-                                {value.phone_number}
+                                Номер телефона:
                                 
                                 </Col>
                                 <Col>
-                                + 7777-993-20-20
+                                {value.phone_number}
                                 
                                 </Col>
                                 
