@@ -52,7 +52,7 @@ function ProductDetailsPage({ history, match }) {
     // after product deletion
     if (productDeletionSuccess) {
         alert("Product successfully deleted.")
-        history.push("/")
+        history.push("/products")
         dispatch({
             type: DELETE_PRODUCT_RESET
         })
