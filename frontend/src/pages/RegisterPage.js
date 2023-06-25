@@ -22,7 +22,7 @@ function RegisterPage({ history, variant }) {
 
     useEffect(() => {
         if (userInfo) {
-            history.push('/') // homepage
+            history.push('/products') // homepage
         }
     }, [history, userInfo])
 
