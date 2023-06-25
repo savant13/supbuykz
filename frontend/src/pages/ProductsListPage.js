@@ -44,7 +44,7 @@ function ProductsListPage() {
         )
     }
     const type_user = userInfo?userInfo.type_user:''
-    
+    console.log(userInfo)
 
     return (
         <div className='canvas'>
@@ -88,9 +88,7 @@ function ProductsListPage() {
                 
                 <Row>
                     
-                    {/* If length of the filter result is equal to 0 then show 'nothing found' message
-                        with help of showNothingMessage function else show the filtered result on the
-                        webpage and then run the map function */}
+                    
                    
                     {(products.filter((item) =>
                         item.name.toLowerCase().includes(searchTerm !== "" ? searchTerm.split("=")[1] : "")

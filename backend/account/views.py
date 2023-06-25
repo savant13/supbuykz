@@ -59,8 +59,9 @@ class UserRegisterView(APIView):
                 )
                 
                 serializer = UserRegisterTokenSerializer(user, many=False)
-                
-                return Response(serializer.data)
+                serializer_2 = XUserSerializer(XUser)
+                response ={**serializer.data,**serializer_2.data}
+                return Response(response)
 
 # login user (customizing it so that we can see fields like username, email etc as a response 
 # from server, otherwise it will only provide access and refresh token)
@@ -203,7 +204,9 @@ class CreateUserAddressView(APIView):
             "landmark": request.data["landmark"],
             "city": request.data["city"],
             "state": request.data["state"],
+
         }
+        
 
         serializer = BillingAddressSerializer(data=new_address, many=False)
         if serializer.is_valid():
