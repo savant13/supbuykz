@@ -48,7 +48,7 @@ function Product({ product ,basket,setBasket}) {
                            
                             
                         }}>
-                            {product.type_product!='B'?"Заказать":"Принят"}
+                            {product.type_product!='B'?"Заказать":"Принять"}
                         </button>
                     </Card.Footer>
                 </Card.Body>

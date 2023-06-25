@@ -197,7 +197,9 @@ function ProductDetailsPage({ history, match }) {
                                                 localStorage.setItem('basket',JSON.stringify(basket))
                                             }
                                         }>
-                                            <img src={IMAGES.basket2}>
+                                            <img src={IMAGES.basket2} width={30} height={30} style={{
+                                                borderRadius:'20px'
+                                            }}>
                                             </img>
                                             
                                             <span style={{

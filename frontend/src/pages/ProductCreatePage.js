@@ -45,6 +45,7 @@ const ProductCreatePage = () => {
         e.preventDefault()
         const userInfo = JSON.parse(localStorage.getItem('userInfo'))
         
+        const type_user = userInfo.type_user[0]=='A' || userInfo.type_user[0]=='S'?'S':'B'
         let form_data = new FormData()
         form_data.append('name', name)
         form_data.append('description', description)
@@ -53,7 +54,7 @@ const ProductCreatePage = () => {
         
         form_data.append('category',e.target[2].value)
         form_data.append('image', image)
-        form_data.append("type_product",userInfo.type_user[0])
+        form_data.append("type_product",type_user)
 
         dispatch(createProduct(form_data))
     }

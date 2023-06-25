@@ -1,0 +1,21 @@
+React js download jasap al
+
+
+
+1.  env\scripts\activate   
+2.  pip instal -r requirements.txt
+3.  cd backend 
+4.  python manage.py makemigrations
+5.  python manage.py migrate
+6.  python manage.py runserver
+7.  Jana terminal ashasyn , 
+8.  cd frontend
+9.  npm -i
+10. npm start
+11. Web browser ashylad
+
+
+
+node -v 19.2.0
+python 3.10.6
+ 

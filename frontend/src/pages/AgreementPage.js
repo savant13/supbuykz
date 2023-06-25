@@ -1,6 +1,9 @@
 import { Container,Row,Col } from "react-bootstrap";
 import IMAGES from "../constants/images";
+import agreementFile from '../data/template_agreement.docx';
 import NavBar from '../components/Navbar.js'
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom'
 
 function onSubmit(e){
     e.preventDefault()
@@ -12,13 +15,21 @@ function onSubmit(e){
 }
 const AgreementPage = ()=>{
     const basket = JSON.parse(localStorage.getItem('basket'))
+    const [end,setEnd] = useState(false)
     let total_price = 0
     for (const key in basket) {
         total_price += basket[key].price * basket[key].count
     }
+    let myRef = useRef('fileInput');
+    
     return (
-    <div>
+    <div> 
+           
+    <div style={{
+        opacity:end?'40%':'100%'
+    }}>
         <NavBar></NavBar>
+     
         <div style={{
             height:'50px'
         }}></div>
@@ -26,6 +37,7 @@ const AgreementPage = ()=>{
         
         
     }}>
+        
         
         <form onSubmit={onSubmit}>
 
@@ -43,23 +55,27 @@ const AgreementPage = ()=>{
                <h2>1.</h2>
             </Col>
             <Col md={5}>
-                <a href={IMAGES.document_pdf} download style={{
+                <a href={agreementFile} download target="_blank" rel="noopener noreferrer" style={{
                     textDecoration:'none',
 
                 }}>
+                 
                
-                <button className="btn1" style={{
+                <div className="btn1" style={{
                     width:'250px',
                     display:"flex",
                     justifyContent:'space-evenly',
                     alignItems:'center'
-                }}>
+                }}
+                
+                
+                >
                     <b>Договор</b> 
                     <img src={IMAGES.doc_button} width={25} height={25}>
                     
                     </img>
 
-                </button>
+                </div>
             </a>
 
             </Col>
@@ -78,19 +94,25 @@ const AgreementPage = ()=>{
                <h2>2.</h2>
             </Col>
             <Col md={5}>
-                <button className="btn1" style={{
+                  
+                <div className="btn1" style={{
                     width:'250px',
                     display:"flex",
                     justifyContent:'space-evenly',
                     alignItems:'center'
                 }}>
-                    
+                    <input type="file" onChange={(e)=>{
+                        const file = e.target.files[0];
+                    }} style={{
+                        opacity:'0%',
+                        position:'absolute'
+                    }}/>
                     <b>Загрузить Договор</b> 
                     <img src={IMAGES.download_button} width={25} height={25}>
                     
                     </img>
 
-                </button>
+                </div>
 
             </Col>
             <Col md={5}>
@@ -168,7 +190,15 @@ const AgreementPage = ()=>{
                 width:'350px',
                 
 
-            }}>
+            }}
+            onClick={()=>{
+                setEnd(true)
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Optional: Enables smooth scrolling animation
+                  });
+            }}
+            >
             Получить Контакты 
             </button>
             </Col>
@@ -178,7 +208,64 @@ const AgreementPage = ()=>{
 
 
     </Container>
-    </div>)
+    
+    </div>
+    <div style={
+            {
+                position:'fixed',
+                background: "#F89F21",
+                opacity:end?"80%":'0%',
+                display:end?"block":'none',
+                width:'482px',
+                height:'500px',
+                left:'40%',
+                top:'25%',
+                color:'white',
+                padding:'20px 30px',
+                textAlign:'center',
+                borderRadius:'50px'
+            }
+            
+        }>
+            <h3>Спасибо за заказ!</h3>
+            <div style={{
+                height:'25px'
+            }}></div>
+            <div >
+                <img src={IMAGES.done_agreement}></img>
+            </div>
+            <div style={{
+                height:'50px'
+            }}></div>
+            <div style={{
+                fontSize:'20px',
+                fontWeight:'400',
+                fontFamily:'Inter',
+
+                
+            }}>
+            Ваш заказ успешно оформлен.В ближайшее время по указанному телефону с вами свяжутся.
+            </div>
+            <div style={{
+                height:'50px'
+            }}></div>
+            <Link to='/products'>
+                <button className="btn1" style={{
+                    background:'#F27623',
+                    
+                    fontSize:'20px',
+                    fontFamily:'Inter',
+                    width:'70%',
+                    borderRadius:'60px'
+                }}>
+                Вернуться на главную 
+            </button>
+            </Link>
+
+        </div> 
+
+    </div>
+    )
     
 
 

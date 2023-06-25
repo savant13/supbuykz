@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap'
-import NavBar from '../components/Navbar';
+import NavBar2 from '../components/Navbar2.js';
 
 
 
@@ -8,7 +8,7 @@ function FAQPage(){
 
     return (
         <div>
-            <NavBar></NavBar>
+            <NavBar2/>
             <div style={{
                 height:'50px'
             }}></div>

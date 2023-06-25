@@ -49,7 +49,7 @@ function RegisterPage({ history, variant }) {
                     <Form onSubmit={submitHandler}>
                         
 
-                        <Form.Group controlId='name' className='register-field' >
+                        <Form.Group controlId='username' className='register-field' >
                             
                             <Form.Control
                                 required
@@ -72,6 +72,7 @@ function RegisterPage({ history, variant }) {
                             >
                             </Form.Control>
                         </Form.Group>
+
                         <Form.Group controlId='full_name' className='register-field' >
                             
                             <Form.Control
@@ -168,8 +169,8 @@ function RegisterPage({ history, variant }) {
                         />
                        
                         </Form.Group>
-                        <Form.Group controlId="licenze" className="register-field" >
-                        <Form.Label htmlFor='file-field' style={{
+                        <Form.Group  className="register-field" >
+                        <Form.Label htmlFor='licenze' style={{
                              width: '460.69px',
                              height: '50.98px',
                              color:'gray',
@@ -178,10 +179,18 @@ function RegisterPage({ history, variant }) {
                              background: '#E8E8E8',
                              borderRadius: '20px'
                         }}> Подтверждающий документ/лицензия </Form.Label>
-                        <Form.Control type="file" size="lg" id='file-field' style={{
+                        <Form.Control type="file" size="lg" id='licenze' style={{
                            
-                            
-                        }} placeholder='d'/>
+                            display:'hidden',
+                            opacity:'0%'
+                        }} 
+                        placeholder='d'
+                        
+                        onChange={(e)=>{
+                            setLicenze(e.target.files[0])
+
+                        }}
+                        />
                         </Form.Group>
 
                         <Button type="submit" variant='primary' className='btn-custom' style={{

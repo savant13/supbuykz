@@ -97,14 +97,16 @@ function ProductsListPage() {
                         && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='')
                     )).length === 0 ? showNothingMessage() : (products.filter((item) =>
                     item.name.toLowerCase().includes(searchTerm !== "" ? searchTerm.split("=")[1] : "")
-                    && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='') && (item.type_product[0] != type_user[0] || type_user=='Admin')
-                    )).map((product, idx) => (
-                        <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
+                    && (item.category.toLowerCase() === categoryTerm.toLowerCase() || categoryTerm =='') && (item.type_product[0].toLowerCase() !== type_user[0].toLowerCase() || type_user=='Admin')
+                    )).map((product, idx) => {
+                        console.log(product.type_product[0].toLowerCase())
+                        console.log(type_user)
+                        return (<Col key={product.id} sm={12} md={6} lg={4} xl={3}>
                             <div className="mx-2"> 
                                 <Product product={product} basket = {basket} setBasket = {setBasket}/>
                             </div>
-                        </Col>
-                    )
+                        </Col>)
+                    }
                     )}
                 </Row>
                 
@@ -115,7 +117,7 @@ function ProductsListPage() {
                         fontSize:'20px',
                         borderRadius:'20px',
                         fontWeight:'700'
-                    }}>{type_user=='Buyer'?"Оставит заявку":"Добавить свой товар"}</button>
+                    }}>{type_user=='Buyer'?"Оставить заявку":"Добавить свой товар"}</button>
                 </Link>
                 <div className='basket'>
                     <h3>Корзина</h3>
